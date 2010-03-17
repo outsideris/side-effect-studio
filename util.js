@@ -63,3 +63,11 @@ util.get('/', util.staticHandler('index.html'));
 util.get('/client.js', util.staticHandler('client.js'));
 util.get('/style.css', util.staticHandler('style.css'));
 
+util.get('/version', function(req, res) {
+	var version = 'tbd';
+	res.simpleJSON(200, {
+		nodejs_version: version
+	});
+
+});
+
