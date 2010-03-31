@@ -7,6 +7,8 @@ App.notice = function(msg) {
 
 $(function() {
 
+    $('input.readLine').focus();
+
 	$.ajax({
 		url: '/version',
 		success: function(data) {

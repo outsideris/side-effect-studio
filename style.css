@@ -108,3 +108,7 @@ body {
   margin-left: 2px;
 }
 
+#terminal input.readLine {
+  padding-left: 0;
+  margin-left: 0;
+}
