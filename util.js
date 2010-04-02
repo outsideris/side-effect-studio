@@ -74,8 +74,30 @@ util.get('/version', function(req, res) {
 });
 
 util.get('/cmd', function(req, res) {
+	var cmd = qs.parse(url.parse(req.url).query).cmd;
 	res.simpleJSON(200, {
-		response: 'hello world'
+		response: repl.readLine(cmd)
 	});
 });
 
+var repl = {};
+
+repl.readLine = function(_cmd) {
+	var cmd = repl.trimWhitespace(_cmd);
+	return eval(cmd);
+};
+
+/**
+ * Trims Whitespace from a line.
+ * 
+ * @param {String} cmd The string to trim the whitespace from
+ * @returns {String} The trimmed string 
+ */
+repl.trimWhitespace = function(cmd) {
+	var matches = trimmer.exec(cmd);
+	if (matches && matches.length == 2) {
+		return matches[1];
+	}
+};
+
+var trimmer = /^\s*(.+)\s*$/m;

@@ -32,6 +32,7 @@ App.addResponseLine = function(msg) {
 App.send = function(cmd) {
 	$.ajax({
 		url: '/cmd',
+    data: {cmd: cmd},
 		success: function(data) {
 			App.addResponseLine(data.response);
 		},
@@ -67,7 +68,7 @@ $('.readLine').live('keypress', function(e) {
 	if (e.keyCode !== 13) {
 		return;
 	}
-	var cmd = $('.readLine').attr('value').replace('\n', '');
+	var cmd = $('.readLine:last').attr('value').replace('\n', '');
 	App.send(cmd);
 });
 
