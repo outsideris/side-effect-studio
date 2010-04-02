@@ -37,6 +37,7 @@ App.send = function(cmd) {
 			App.addResponseLine(data.response);
 		},
 		error: function() {
+     alert('error');
 			App.notice(cmd + ' could not be sent to the server');
 		}
 	});

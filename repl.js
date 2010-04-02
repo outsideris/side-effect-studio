@@ -1,9 +1,8 @@
-var repl = exports;
-
-var fs = require('fs'),
+var repl = exports,
+sys = require('sys'),
+fs = require('fs'),
 qs = require('querystring'),
 url = require('url'),
-util = exports,
 buffered_cmd = '';
 
 exports.readLine = function(_cmd) {
@@ -16,12 +15,13 @@ exports.readLine = function(_cmd) {
 		output = eval(buffered_cmd);
 		buffered_cmd = '';
 	} catch(e) {
-		if (! (e instanceof SyntaxError)) {
-			throw e;
+		if (e instanceof SyntaxError) {
+			output = '...';
+		} else {
+			output = e.stack;
+			buffered_cmd = '';
 		}
-		output = '...';
 	}
-
 	return output;
 };
 
