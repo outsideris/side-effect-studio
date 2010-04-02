@@ -2,7 +2,8 @@ var sys = require('sys'),
 fs = require('fs'),
 qs = require('querystring'),
 url = require('url'),
-util = exports;
+util = exports,
+buffered_cmd = '';
 
 util.getMap = [];
 
@@ -83,8 +84,22 @@ util.get('/cmd', function(req, res) {
 var repl = {};
 
 repl.readLine = function(_cmd) {
-	var cmd = repl.trimWhitespace(_cmd);
-	return eval(cmd);
+	var cmd = repl.trimWhitespace(_cmd),
+	output;
+
+	buffered_cmd += _cmd;
+
+	try {
+		output = eval(buffered_cmd);
+		buffered_cmd = '';
+	} catch(e) {
+		if (! (e instanceof SyntaxError)) {
+			throw e;
+		}
+    output = '...';
+	}
+
+	return output;
 };
 
 /**
