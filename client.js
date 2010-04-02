@@ -15,6 +15,8 @@ $(function() {
 			if (data.error) {
 				App.notice(data.error);
 			} else {
+        var v = data.nodejs_version;
+        log(v);
 				$('#nodejs_version').text(data.nodejs_version);
 			}
 		},
