@@ -73,3 +73,9 @@ util.get('/version', function(req, res) {
 	});
 });
 
+util.get('/cmd', function(req, res) {
+	res.simpleJSON(200, {
+		response: 'hello world'
+	});
+});
+

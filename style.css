@@ -77,6 +77,7 @@ body {
 #terminal div.line {
   width: 940px;
   margin-bottom: 5px;
+  color: #45FF17;
 }
 
 #terminal input {
