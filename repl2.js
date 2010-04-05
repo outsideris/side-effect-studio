@@ -5,14 +5,17 @@ url = require('url'),
 buffered_cmd = '',
 repl2 = exports,
 scopedVar = /^\s*var\s*([_\w\$]+)(.*)$/m,
-scopeFunc = /^\s*function\s*([_\w\$]+)/;
+scopeFunc = /^\s*function\s*([_\w\$]+)/,
+putsm = [];
 
 exports.scope = {};
 
 repl2.readLine = function(_cmd) {
 	var cmd = trimWhitespace(_cmd),
 	parsedKeyword = parseREPLKeyword(cmd),
-	output;
+	output = [],
+	output_tmp,
+	output_s;
 
 	if (parsedKeyword) {
 		return parsedKeyword;
@@ -23,20 +26,30 @@ repl2.readLine = function(_cmd) {
 
 	try {
 		with(exports.scope) {
-			output = eval(buffered_cmd);
-      output = sys.inspect(output); // otherwise foo = {} will notput {} properly
-			if (output !== undefined) {
-				exports.scope['_'] = output;
+			output = [];
+			output_tmp = eval(buffered_cmd);
+			output_s = sys.inspect(output_tmp); // otherwise foo = {} will notput {} properly
+			if (output_tmp) {
+				output.push(output_s);
+			}
+			if (output_tmp !== undefined) {
+				exports.scope['_'] = output_s;
 			}
 		}
 		buffered_cmd = '';
 	} catch(e) {
 		if (e instanceof SyntaxError) {
-			output = '...';
+			output.push('...');
 		} else {
-			output = e.stack;
+			output.push(e.stack);
 			buffered_cmd = '';
 		}
+	}
+
+	if (putsm.length > 0) {
+		output = output.concat(putsm);
+		extra_output = ''
+		putsm = [];
 	}
 	return output;
 };
@@ -101,3 +114,16 @@ function parseREPLKeyword(cmd) {
 	return false;
 }
 
+sys.puts("Server at http://" + HOST + ':' + PORT.toString() + '/');
+
+sys.puts = function(msg) {
+	putsm.push(msg);
+}
+
+sys.p = function(msg) {
+	putsm.push(msg);
+}
+
+sys.print = function(msg) {
+	putsm.push(msg);
+}

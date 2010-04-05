@@ -22,6 +22,3 @@ http.createServer(function(req, res) {
 
 	handler(req, res);
 }).listen(PORT, HOST);
-
-sys.puts("Server at http://" + HOST + ':' + PORT.toString() + '/');
-

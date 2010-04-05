@@ -37,11 +37,20 @@ App.addResponseLine = function(msg, ignore_prompt) {
 App.send = function(cmd) {
 	$.ajax({
 		url: '/cmd',
+		dataType: 'json',
 		data: {
 			cmd: cmd
 		},
 		success: function(data) {
-			App.addResponseLine(data.response);
+			res = data.response;
+			for (var i = 0; i < res.length; i++) {
+				App.addResponseLine(res[i], false);
+			}
+
+			if (res.length === 0) {
+				App.addLine();
+				$('input:last').focus();
+			}
 		},
 		error: function() {
 			App.notice(cmd + ' could not be sent to the server');
