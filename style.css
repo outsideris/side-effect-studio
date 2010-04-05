@@ -113,3 +113,24 @@ body {
   padding-left: 0;
   margin-left: 0;
 }
+
+#wrapper {
+  width: 1000px;
+  padding-left: 20px;
+  float: left;
+  padding:0;
+  margin:0;
+}
+
+#rhs {
+color: #9f8e81;
+margin: 70px 10px 0 10px;
+float: right;
+text-align: left;
+width: 350px;
+font-size: 13px;
+}
+
+#rhs a {
+color: #9f8e81;
+}
