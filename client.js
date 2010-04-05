@@ -6,7 +6,9 @@ App.notice = function(msg) {
 };
 
 App.addLine = function() {
-  var $line = $('<div />', {className: 'line'});
+	var $line = $('<div />', {
+		className: 'line'
+	});
 	$('<span />', {
 		text: '> ',
 		className: 'prompt'
@@ -20,19 +22,24 @@ App.addLine = function() {
 	$('#terminal').append($line);
 };
 
-App.addResponseLine = function(msg) {
+App.addResponseLine = function(msg, ignore_prompt) {
+
 	$('<div />', {
 		className: 'line',
 		text: msg
 	}).appendTo($('#terminal'));
-  App.addLine();
-  $('input:last').focus();
+	if (ignore_prompt) {} else {
+		App.addLine();
+		$('input:last').focus();
+	}
 };
 
 App.send = function(cmd) {
 	$.ajax({
 		url: '/cmd',
-    data: {cmd: cmd},
+		data: {
+			cmd: cmd
+		},
 		success: function(data) {
 			App.addResponseLine(data.response);
 		},
@@ -69,6 +76,17 @@ $('.readLine').live('keypress', function(e) {
 		return;
 	}
 	var cmd = $('.readLine:last').attr('value').replace('\n', '');
-	App.send(cmd);
+	if (cmd === '.help') {
+		App.showHelp();
+	} else {
+		App.send(cmd);
+	}
 });
+
+App.showHelp = function() {
+	App.addResponseLine(".break", true);
+	App.addResponseLine("Sometimes you get stuck in a place you can't get out. This will get your out.", true);
+	App.addResponseLine(".clear", true);
+	App.addResponseLine("Break, and also clear the local scope.");
+};
 
