@@ -42,7 +42,6 @@ util.staticHandler = function(filename) {
 			if (err) {
 				sys.debug('Error loading file ' + filename);
 			} else {
-				sys.debug('loading file ' + filename);
 				body = data;
 			}
 			callback();

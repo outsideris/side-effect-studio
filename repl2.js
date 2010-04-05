@@ -24,6 +24,7 @@ repl2.readLine = function(_cmd) {
 	try {
 		with(exports.scope) {
 			output = eval(buffered_cmd);
+      output = sys.inspect(output); // otherwise foo = {} will notput {} properly
 			if (output !== undefined) {
 				exports.scope['_'] = output;
 			}
