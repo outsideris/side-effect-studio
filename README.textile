@@ -1,0 +1,18 @@
+h1. try-nodejs
+
+"nodejs":http://nodejs.org/ is awesome. 
+
+More people should try it.
+
+Inspired by "try mongodb":http://try.mongodb.org/ . 
+
+h2. How to use it
+
+<pre>
+$ node server.js
+Server at http://127.0.0.1:8002/
+</pre>
+
+Open browser and visit Server at "http://127.0.0.1:8002":Server at http://127.0.0.1:8002
+
+Very soon I will be putting it on web so that world could see how awesome nodejs is.
