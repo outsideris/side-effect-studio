@@ -82,6 +82,3 @@ util.get('/cmd', function(req, res) {
     response: repl2.readLine(cmd)
 	});
 });
-
-
-repl2.readLine('2+2');
