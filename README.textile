@@ -13,6 +13,6 @@ $ node server.js
 Server at http://127.0.0.1:8002/
 </pre>
 
-Open browser and visit Server at "http://127.0.0.1:8002":Server at http://127.0.0.1:8002
+Open browser and visit "http://127.0.0.1:8002":http://127.0.0.1:8002
 
 Very soon I will be putting it on web so that world could see how awesome nodejs is.
