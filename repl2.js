@@ -1,28 +1,28 @@
-var repl = exports,
-sys = require('sys'),
+var sys = require('sys'),
 fs = require('fs'),
 qs = require('querystring'),
 url = require('url'),
-buffered_cmd = '';
+buffered_cmd = '',
+repl2 = exports;
 
-exports.readLine = function(_cmd) {
-	var cmd = trimWhitespace(_cmd),
-	output;
+repl2.readLine = function(_cmd) {
+  var cmd = trimWhitespace(_cmd),
+  output;
 
-	buffered_cmd += _cmd;
+  buffered_cmd += _cmd;
 
-	try {
-		output = eval(buffered_cmd);
-		buffered_cmd = '';
-	} catch(e) {
-		if (e instanceof SyntaxError) {
-			output = '...';
-		} else {
-			output = e.stack;
-			buffered_cmd = '';
-		}
-	}
-	return output;
+  try {
+    output = eval(buffered_cmd);
+    buffered_cmd = '';
+  } catch(e) {
+    if (e instanceof SyntaxError) {
+      output = '...';
+    } else {
+      output = e.stack;
+      buffered_cmd = '';
+    }
+  }
+  return output;
 };
 
 /**

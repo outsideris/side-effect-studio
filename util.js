@@ -1,9 +1,10 @@
 var sys = require('sys'),
+child_process = require('child_process'),
 fs = require('fs'),
 qs = require('querystring'),
 url = require('url'),
-repl = require('./repl'),
 util = exports,
+repl2 = require('./repl2'),
 buffered_cmd = '';
 
 util.getMap = [];
@@ -67,7 +68,7 @@ util.get('/style.css', util.staticHandler('style.css'));
 util.get('/log.js', util.staticHandler('log.js'));
 
 util.get('/version', function(req, res) {
-	sys.exec('node --version', function(err, stdout, stderr) {
+	child_process.exec('node --version', function(err, stdout, stderr) {
 		if (err) throw err;
 		res.simpleJSON(200, {
 			nodejs_version: stdout
@@ -78,7 +79,9 @@ util.get('/version', function(req, res) {
 util.get('/cmd', function(req, res) {
 	var cmd = qs.parse(url.parse(req.url).query).cmd;
 	res.simpleJSON(200, {
-    response: repl.readLine(cmd)
+    response: repl2.readLine(cmd)
 	});
 });
 
+
+repl2.readLine('2+2');
