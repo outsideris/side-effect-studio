@@ -30,10 +30,13 @@ var CommandLineHistory = {
 	},
 
 	getPosition: function() {
-		return this._postion;
+		return this._position;
 	},
 
 	setPosition: function(pos) {
+		if (pos < 0) {
+			pos = 0;
+		}
 		this._position = pos;
 	},
 
@@ -52,7 +55,9 @@ var CommandLineHistory = {
 			text: msg
 		}).appendTo($('#command_line_history'));
 
-		this.setPosition($('#command_line_history div').length);
+		var tmp = $('#command_line_history div').length;
+		log(tmp);
+		this.setPosition(tmp - 1);
 		log(this.getPosition());
 	},
 
@@ -73,13 +78,19 @@ var CommandLineHistory = {
 
 	$.commandLineHistory = function(selector) {
 
+		var clh = Object.create(CommandLineHistory);
+		clh.init();
+
 		$(selector).live('keydown', function(e) {
-			var clh = Object.create(CommandLineHistory);
-			clh.init();
+			log(clh.getPosition());
 
 			if (e.keyCode === 38) {
-				var tmp = $('#command_line_history div:last').text();
+				var current_pos = clh.getPosition();
+				var selector_with_pos = '#command_line_history div:eq(' + current_pos + ')';
+				log(selector_with_pos);
+				var tmp = $(selector_with_pos).text();
 				log(tmp);
+				clh.setPosition(current_pos - 1);
 				$(selector + ':last').val(tmp);
 				return;
 			}
