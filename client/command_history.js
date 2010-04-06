@@ -56,9 +56,7 @@ var CommandLineHistory = {
 		}).appendTo($('#command_line_history'));
 
 		var tmp = $('#command_line_history div').length;
-		log(tmp);
 		this.setPosition(tmp - 1);
-		log(this.getPosition());
 	},
 
 	trimWhitespace: function(cmd) {
@@ -82,21 +80,29 @@ var CommandLineHistory = {
 		clh.init();
 
 		$(selector).live('keydown', function(e) {
-			log(clh.getPosition());
 
 			if (e.keyCode === 38) {
-				var current_pos = clh.getPosition();
-				var selector_with_pos = '#command_line_history div:eq(' + current_pos + ')';
-				log(selector_with_pos);
-				var tmp = $(selector_with_pos).text();
-				log(tmp);
+				var current_pos = clh.getPosition(),
+				selector_with_pos = '#command_line_history div:eq(' + current_pos + ')',
+				pos_text = $(selector_with_pos).text();
+
 				clh.setPosition(current_pos - 1);
-				$(selector + ':last').val(tmp);
+				$(selector + ':last').val(pos_text);
 				return;
 			}
 
 			if (e.keyCode === 40) {
-				App.commandFromHistory('down');
+				var current_pos = clh.getPosition(),
+				log_length = $('#command_line_history div').length;
+				if (current_pos < log_length) {
+					current_pos = current_pos + 1;
+				}
+
+				selector_with_pos = '#command_line_history div:eq(' + current_pos + ')',
+				pos_text = $(selector_with_pos).text();
+
+				clh.setPosition(current_pos);
+				$(selector + ':last').val(pos_text);
 				return;
 			}
 
