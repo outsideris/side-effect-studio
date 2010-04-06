@@ -76,8 +76,11 @@ util.get('/version', function(req, res) {
 });
 
 util.get('/cmd', function(req, res) {
-	var cmd = qs.parse(url.parse(req.url).query).cmd;
+	var param = qs.parse(url.parse(req.url).query),
+	cmd = param.cmd,
+	uid = param.uid;
 	res.simpleJSON(200, {
-    response: repl2.readLine(cmd, 'nodejs' + '9999')
+		response: repl2.readLine(cmd, 'nodejs' + uid)
 	});
 });
+

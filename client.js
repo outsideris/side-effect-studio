@@ -1,6 +1,5 @@
 var App = App || {};
 
-// show a message to user
 App.notice = function(msg) {
 	alert(msg);
 };
@@ -39,7 +38,8 @@ App.send = function(cmd) {
 		url: '/cmd',
 		dataType: 'json',
 		data: {
-			cmd: cmd
+			cmd: cmd,
+			uid: App.uid
 		},
 		success: function(data) {
 			res = data.response;
@@ -60,6 +60,8 @@ App.send = function(cmd) {
 };
 
 $(function() {
+
+	App.uid = Math.floor(Math.random() * 999999999999).toString();
 
 	$('input.readLine').focus();
 
