@@ -27,7 +27,7 @@ App.addResponseLine = function(msg, ignore_prompt) {
 		className: 'line',
 		text: msg
 	}).appendTo($('#terminal'));
-	if (ignore_prompt) {} else {
+	if (!ignore_prompt) {
 		App.addLine();
 		$('input:last').focus();
 	}
@@ -83,10 +83,14 @@ $(function() {
 });
 
 $('.readLine').live('keypress', function(e) {
+
 	if (e.keyCode !== 13) {
 		return;
 	}
 	var cmd = $('.readLine:last').attr('value').replace('\n', '');
+	if (cmd.length === 0) {
+		return;
+	}
 	if (cmd === '.help') {
 		App.showHelp();
 	} else {

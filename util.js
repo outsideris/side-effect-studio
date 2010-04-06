@@ -62,9 +62,11 @@ util.staticHandler = function(filename) {
 };
 
 util.get('/', util.staticHandler('index.html'));
-util.get('/client.js', util.staticHandler('client.js'));
-util.get('/style.css', util.staticHandler('style.css'));
-util.get('/log.js', util.staticHandler('log.js'));
+util.get('/client/app.js', util.staticHandler('client/app.js'));
+util.get('/client/style.css', util.staticHandler('client/style.css'));
+util.get('/client/log.js', util.staticHandler('client/log.js'));
+util.get('/client/js-hotkeys.js', util.staticHandler('client/js-hotkeys.js'));
+util.get('/client/command_history.js', util.staticHandler('client/command_history.js'));
 
 util.get('/version', function(req, res) {
 	child_process.exec('node --version', function(err, stdout, stderr) {
