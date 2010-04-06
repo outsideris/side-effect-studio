@@ -4,13 +4,18 @@ qs = require('querystring'),
 url = require('url'),
 buffered_cmd = '',
 repl2 = exports,
+trimmer = /^\s*(.+)\s*$/m,
 scopedVar = /^\s*var\s*([_\w\$]+)(.*)$/m,
 scopeFunc = /^\s*function\s*([_\w\$]+)/,
 putsm = [];
 
 exports.scope = {};
 
-repl2.readLine = function(_cmd) {
+repl2.readLine = function(_cmd, uid) {
+	if (!exports.scope[uid]) {
+		exports.scope[uid] = {};
+	}
+
 	var cmd = trimWhitespace(_cmd),
 	parsedKeyword = parseREPLKeyword(cmd),
 	output = [],
@@ -22,10 +27,10 @@ repl2.readLine = function(_cmd) {
 	}
 
 	buffered_cmd += _cmd;
-	buffered_cmd = convertToScope(buffered_cmd);
+	buffered_cmd = convertToScope(buffered_cmd, uid);
 
 	try {
-		with(exports.scope) {
+		with(exports.scope[uid]) {
 			output = [];
 			output_tmp = eval(buffered_cmd);
 			output_s = sys.inspect(output_tmp); // otherwise foo = {} will notput {} properly
@@ -33,13 +38,14 @@ repl2.readLine = function(_cmd) {
 				output.push(output_s);
 			}
 			if (output_tmp !== undefined) {
-				exports.scope['_'] = output_s;
+				exports.scope[uid]['_'] = output_s;
 			}
 		}
 		buffered_cmd = '';
 	} catch(e) {
 		if (e instanceof SyntaxError) {
 			output.push('...');
+			throw e;
 		} else {
 			output.push(e.stack);
 			buffered_cmd = '';
@@ -54,12 +60,6 @@ repl2.readLine = function(_cmd) {
 	return output;
 };
 
-/**
- * Trims Whitespace from a line.
- * 
- * @param {String} cmd The string to trim the whitespace from
- * @returns {String} The trimmed string 
- */
 var trimWhitespace = function(cmd) {
 	var matches = trimmer.exec(cmd);
 	if (matches && matches.length == 2) {
@@ -67,23 +67,14 @@ var trimWhitespace = function(cmd) {
 	}
 };
 
-var trimmer = /^\s*(.+)\s*$/m;
-
-/**
- * Converts commands that use var and function <name>() to use the
- * local exports.scope when evaled. This provides a local scope
- * on the REPL.
- * 
- * @param {String} cmd The cmd to convert
- * @returns {String} The converted command
- */
-function convertToScope(cmd) {
-	var matches;
+function convertToScope(cmd, uid) {
+	var matches, tmp;
 
 	// Replaces: var foo = "bar";  with: exports.scope.foo = bar;
 	matches = scopedVar.exec(cmd);
 	if (matches && matches.length == 3) {
-		return "exports.scope." + matches[1] + matches[2];
+		tmp = "exports.scope." + uid + '.' + matches[1] + matches[2];
+		return tmp;
 	}
 
 	// Replaces: function foo() {};  with: foo = function foo() {};
@@ -95,12 +86,6 @@ function convertToScope(cmd) {
 	return cmd;
 }
 
-/**
- * Used to parse and execute the Node REPL commands.
- * 
- * @param {cmd} cmd The command entered to check
- * @returns {Boolean} If true it means don't continue parsing the command 
- */
 function parseREPLKeyword(cmd) {
 	switch (cmd) {
 	case ".break":
@@ -127,3 +112,4 @@ sys.p = function(msg) {
 sys.print = function(msg) {
 	putsm.push(msg);
 }
+
