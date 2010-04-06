@@ -1,8 +1,41 @@
+if (typeof Object.create !== 'function') {
+	Object.create = function(o) {
+		function F() {}
+		F.prototype = o;
+		return new F();
+	};
+}
+
 $(function() {
 	CommandLineHistory.setup();
 });
 
+var CommandLineHistoryPosition = function(val) {
+	var value = val;
+
+	this.getValue = function() {
+		return value;
+	};
+
+	this.setValue = function(val) {
+		value = val;
+	};
+
+};
+
 var CommandLineHistory = {
+
+	init: function() {
+		this._position = null;
+	},
+
+	getPosition: function() {
+		return this._postion;
+	},
+
+	setPosition: function(pos) {
+		this._position = pos;
+	},
 
 	setup: function() {
 		var $command_line_history = $('#command_line_history');
@@ -19,15 +52,16 @@ var CommandLineHistory = {
 			text: msg
 		}).appendTo($('#command_line_history'));
 
+		this.setPosition($('#command_line_history div').length);
+		log(this.getPosition());
 	},
-
-	trimmer: /^\s*(.+)\s*$/m,
 
 	trimWhitespace: function(cmd) {
 		if (!cmd) {
 			return '';
 		}
-		var matches = this.trimmer.exec(cmd);
+		var trimmer = /^\s*(.+)\s*$/m,
+		matches = trimmer.exec(cmd);
 		if (matches && matches.length == 2) {
 			return matches[1];
 		}
@@ -39,8 +73,9 @@ var CommandLineHistory = {
 
 	$.commandLineHistory = function(selector) {
 
-		// Create a hidden #command_line_history id on the page
 		$(selector).live('keydown', function(e) {
+			var clh = Object.create(CommandLineHistory);
+			clh.init();
 
 			if (e.keyCode === 38) {
 				var tmp = $('#command_line_history div:last').text();
@@ -56,9 +91,10 @@ var CommandLineHistory = {
 
 			if (e.keyCode === 13) {
 				$target = $(e.target);
-				var cmd = CommandLineHistory.trimWhitespace($target.attr('value'));
-				log(cmd);
-				CommandLineHistory.log(cmd);
+				var cmd = clh.trimWhitespace($target.attr('value'));
+				if (cmd.length > 0) {
+					clh.log(cmd);
+				}
 				return;
 			}
 
