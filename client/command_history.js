@@ -43,7 +43,9 @@ var CommandLineHistory = {
 		$(selector).live('keydown', function(e) {
 
 			if (e.keyCode === 38) {
-				App.commandFromHistory('up');
+				var tmp = $('#command_line_history div:last').text();
+				log(tmp);
+				$(selector + ':last').val(tmp);
 				return;
 			}
 
