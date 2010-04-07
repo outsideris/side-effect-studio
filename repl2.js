@@ -17,13 +17,13 @@ repl2.readLine = function(_cmd, uid) {
 	}
 
 	var cmd = trimWhitespace(_cmd),
-	parsedKeyword = parseREPLKeyword(cmd),
+	parsedKeyword = parseREPLKeyword(cmd, uid),
 	output = [],
 	output_tmp,
 	output_s;
 
 	if (parsedKeyword) {
-		return parsedKeyword;
+		return ['...'];
 	}
 
 	buffered_cmd += _cmd;
@@ -32,6 +32,7 @@ repl2.readLine = function(_cmd, uid) {
 	try {
 		with(exports.scope[uid]) {
 			output = [];
+      //sys.puts(buffered_cmd);
 			output_tmp = eval(buffered_cmd);
 			output_s = sys.inspect(output_tmp); // otherwise foo = {} will notput {} properly
 			if (output_tmp) {
@@ -85,15 +86,15 @@ function convertToScope(cmd, uid) {
 	return cmd;
 }
 
-function parseREPLKeyword(cmd) {
+function parseREPLKeyword(cmd, uid) {
 	switch (cmd) {
 	case ".break":
 		buffered_cmd = '';
-		return '';
+		return true;
 	case ".clear":
 		buffered_cmd = '';
-		exports.scope = {};
-		return "Clearing Scope...";
+		exports.scope[uid] = {};
+		return true;
 	}
 	return false;
 }
@@ -101,14 +102,14 @@ function parseREPLKeyword(cmd) {
 sys.puts("Server at http://" + HOST + ':' + PORT.toString() + '/');
 
 sys.puts = function(msg) {
-	putsm.push(msg);
+  putsm.push(msg);
 }
 
 sys.p = function(msg) {
-	putsm.push(msg);
+  putsm.push(msg);
 }
 
 sys.print = function(msg) {
-	putsm.push(msg);
+  putsm.push(msg);
 }
 
