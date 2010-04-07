@@ -1,16 +1,24 @@
-if (typeof Object.create !== 'function') {
-	Object.create = function(o) {
-		function F() {}
-		F.prototype = o;
-		return new F();
-	};
-}
-
+// Had it not been a plugin the code woule have been like this
+//if (typeof Object.create !== 'function') {
+//Object.create = function(o) {
+//function F() {}
+//F.prototype = o;
+//return new F();
+//};
+//}
+//
 $(function() {
 	CommandLineHistory.setup();
 });
 
 var CommandLineHistory = {
+
+	factory: function(o) {
+		function F() {}
+		F.prototype = o;
+		return new F();
+
+	},
 
 	init: function() {
 		this._position = null;
@@ -21,7 +29,7 @@ var CommandLineHistory = {
 	},
 
 	setPosition: function(pos) {
-		if (pos < 0) {
+		if (pos < -1) {
 			pos = 0;
 		}
 		this._position = pos;
@@ -43,7 +51,7 @@ var CommandLineHistory = {
 		}).appendTo($('#command_line_history'));
 
 		var tmp = $('#command_line_history div').length;
-		this.setPosition(tmp - 1);
+		this.setPosition(tmp);
 	},
 
 	trimWhitespace: function(cmd) {
@@ -70,7 +78,7 @@ var CommandLineHistory = {
 
 	$.commandLineHistory = function(selector) {
 
-		var clh = Object.create(CommandLineHistory);
+		var clh = CommandLineHistory.factory(CommandLineHistory);
 		clh.init();
 
 		$(selector).live('keydown', function(e) {
@@ -100,3 +108,4 @@ var CommandLineHistory = {
 		});
 	};
 })(jQuery);
+
