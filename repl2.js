@@ -45,7 +45,6 @@ repl2.readLine = function(_cmd, uid) {
 	} catch(e) {
 		if (e instanceof SyntaxError) {
 			output.push('...');
-			throw e;
 		} else {
 			output.push(e.stack);
 			buffered_cmd = '';

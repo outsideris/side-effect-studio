@@ -10,19 +10,6 @@ $(function() {
 	CommandLineHistory.setup();
 });
 
-var CommandLineHistoryPosition = function(val) {
-	var value = val;
-
-	this.getValue = function() {
-		return value;
-	};
-
-	this.setValue = function(val) {
-		value = val;
-	};
-
-};
-
 var CommandLineHistory = {
 
 	init: function() {
@@ -68,6 +55,13 @@ var CommandLineHistory = {
 		if (matches && matches.length == 2) {
 			return matches[1];
 		}
+	},
+
+	updatePrompt: function(pos, selector) {
+		this.setPosition(pos);
+		var selector_with_pos = '#command_line_history div:eq(' + pos + ')',
+		text = $(selector_with_pos).text();
+		$(selector + ':last').val(text);
 	}
 
 };
@@ -80,33 +74,21 @@ var CommandLineHistory = {
 		clh.init();
 
 		$(selector).live('keydown', function(e) {
+			var current_pos = clh.getPosition();
 
 			if (e.keyCode === 38) {
-				var current_pos = clh.getPosition(),
-				selector_with_pos = '#command_line_history div:eq(' + current_pos + ')',
-				pos_text = $(selector_with_pos).text();
-
-				clh.setPosition(current_pos - 1);
-				$(selector + ':last').val(pos_text);
+				clh.updatePrompt(current_pos - 1, selector);
 				return;
-			}
 
-			if (e.keyCode === 40) {
-				var current_pos = clh.getPosition(),
+			} else if (e.keyCode === 40) {
 				log_length = $('#command_line_history div').length;
 				if (current_pos < log_length) {
 					current_pos = current_pos + 1;
 				}
-
-				selector_with_pos = '#command_line_history div:eq(' + current_pos + ')',
-				pos_text = $(selector_with_pos).text();
-
-				clh.setPosition(current_pos);
-				$(selector + ':last').val(pos_text);
+				clh.updatePrompt(current_pos, selector);
 				return;
-			}
 
-			if (e.keyCode === 13) {
+			} else if (e.keyCode === 13) {
 				$target = $(e.target);
 				var cmd = clh.trimWhitespace($target.attr('value'));
 				if (cmd.length > 0) {
@@ -118,6 +100,3 @@ var CommandLineHistory = {
 		});
 	};
 })(jQuery);
-
-jQuery.commandLineHistory('.readLine');
-

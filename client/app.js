@@ -105,3 +105,5 @@ App.showHelp = function() {
 	App.addResponseLine("Break, and also clear the local scope.");
 };
 
+
+jQuery.commandLineHistory('.readLine');
