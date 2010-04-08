@@ -1,5 +1,5 @@
-PORT = 8002;
-HOST = '127.0.0.1';
+PORT = 8000;
+HOST = null; //localhost
 
 var sys = require('sys'),
 fs = require('fs'),
