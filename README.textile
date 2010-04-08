@@ -10,17 +10,18 @@ h2. How to use it
 
 <pre>
 $ node server.js
-Server at http://127.0.0.1:8002/
 </pre>
 
-Open browser and visit "http://127.0.0.1:8002":http://127.0.0.1:8002
+Open browser and visit "http://127.0.0.1:8000":http://127.0.0.1:8000
 
-Very soon I will be putting it on web so that world could see how awesome nodejs is.
+h2. What version of nodejs it works with
 
+This app was last tested with version <tt>v0.1.33-173-gae805f1</tt> of nodejs.
 
-TODO
+h2. TODO
 
 * run it as a daemon
 * should autostart in case of crash
 * clear the data for user inactive for 60 seconds
+* test that any destructive funcationality can not be performed
 
