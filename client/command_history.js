@@ -1,12 +1,3 @@
-// Had it not been a plugin the code woule have been like this
-//if (typeof Object.create !== 'function') {
-//Object.create = function(o) {
-//function F() {}
-//F.prototype = o;
-//return new F();
-//};
-//}
-//
 $(function() {
 	CommandLineHistory.setup();
 });
@@ -41,7 +32,7 @@ var CommandLineHistory = {
 			$('<div />', {
 				id: 'command_line_history',
 				text: 'command_line_history'
-			}).appendTo($('body'));
+			}).hide().appendTo($('body'));
 		}
 	},
 
