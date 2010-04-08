@@ -16,3 +16,11 @@ Server at http://127.0.0.1:8002/
 Open browser and visit "http://127.0.0.1:8002":http://127.0.0.1:8002
 
 Very soon I will be putting it on web so that world could see how awesome nodejs is.
+
+
+TODO
+
+* run it as a daemon
+* should autostart in case of crash
+* clear the data for user inactive for 60 seconds
+
