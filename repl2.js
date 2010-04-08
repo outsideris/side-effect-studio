@@ -99,7 +99,7 @@ function parseREPLKeyword(cmd, uid) {
 	return false;
 }
 
-sys.puts("Server at http://" + HOST + ':' + PORT.toString() + '/');
+//sys.puts("Server at http://" + HOST + ':' + PORT.toString() + '/');
 
 sys.puts = function(msg) {
   putsm.push(msg);

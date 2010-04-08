@@ -12,11 +12,7 @@
 
 <div id='container'>
   <div id='wrapper'>
-    <div id='header'>
-      <a href='http://nodejs.org'>nodejs</a> is awesome. try it. 
-      Inspired by <a href='http://try.mongodb.org'>try mongodb</a> .
-      <a href='http://github.com/neerajdotname/try-nodejs'>powered by try-nodejs</a> . 
-    </div>
+    <h1>try nodejs</h1>
 
     <div id='terminal'>
       <p class='response'>nodejs version <span id='nodejs_version'>#</span></a>
@@ -25,17 +21,36 @@
         <input class='readLine active' type='text'>
       </div>
     </div>
+    <div id='header'>
+      <p>
+        <a href='http://nodejs.org'>nodejs</a> is awesome. try it.
+      </p>
+      <p>
+      Inspired by <a href='http://try.mongodb.org'>try mongodb</a>  <br />
+      </p>
+      <p>
+      <a href='http://github.com/neerajdotname/try-nodejs'>powered by try-nodejs</a>  
+      </p>
+      <p>
+      <a href='http://neeraj.name'>Developed by neerajdotname</a>  
+      </p>
+    </div>
   </div>
   <div id='rhs'>
-    nodejs runs on V8 engine. V8 has implemented some part of ECMAScript 5. For example try
-<pre>
-> foo = {hello: 'world'}
-> Object.keys(foo)
-</pre>
+
     <br />
     <p>
-      List of more ECMAScript 5 features  that you can try is <a href='http://wiki.github.com/ry/node/ecma-5mozilla-features-implemented-in-v8'>here</a> .
+    Do not use global variables or your variables might get updated by someone else. Remember they are global.
     </p>
+<pre>
+> a = 2
+> b = 4
+> a + b 
+</pre>      
+    </p>
+    <br />
+
+
 
     <br />
     <p>
@@ -45,6 +60,31 @@
 hello world
 </pre>      
     </p>
+    <br />
+    <br />
+
+
+
+<p>
+    nodejs runs on V8 engine. V8 has implemented some part of ECMAScript 5. For example try
+    </p>    
+<pre>
+> foo = {hello: 'world'}
+> Object.keys(foo)
+</pre>
+    <br />
+    <p>
+      List of more ECMAScript 5 features  that you can try is <a href='http://wiki.github.com/ry/node/ecma-5mozilla-features-implemented-in-v8'>here</a> .
+    </p>
+
+
+
+
+
+
+
+
+
 
   </div>
   <div style='clear:both'></div>
