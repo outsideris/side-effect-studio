@@ -4,7 +4,7 @@ h1. try-nodejs
 
 More people should try it.
 
-Inspired by "try mongodb":http://try.mongodb.org/ . 
+Inspired by "try mongodb":http://try.mongodb.org/ , "try ruby":http://tryruby.org/ and "try redis":http://try.redis-db.com/ . 
 
 h2. How to use it
 
