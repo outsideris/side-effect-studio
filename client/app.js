@@ -8,6 +8,7 @@ App.addLine = function() {
 	var $line = $('<div />', {
 		className: 'line'
 	});
+	$('input').attr("readonly", "readonly");
 	$('<span />', {
 		text: '> ',
 		className: 'prompt'
@@ -79,6 +80,11 @@ $(function() {
 			App.notice('Error connecting to server');
 		}
 	});
+	
+	$("#terminal").click(function(e) {
+    $('input:last').focus();
+  });
+  
 });
 
 $('.readLine').live('keypress', function(e) {
@@ -88,9 +94,11 @@ $('.readLine').live('keypress', function(e) {
 	}
 	var cmd = $('.readLine:last').attr('value').replace('\n', '');
 	if (cmd.length === 0) {
+	  App.addLine();
+	  $('input:last').focus();
 		return;
 	}
-	if (cmd === '.help') {
+	if (cmd === 'help()') {
 		App.showHelp();
 	} else {
 		App.send(cmd);
@@ -98,11 +106,18 @@ $('.readLine').live('keypress', function(e) {
 });
 
 App.showHelp = function() {
-	App.addResponseLine(".break", true);
-	App.addResponseLine("Sometimes you get stuck in a place you can't get out. This will get your out.", true);
-	App.addResponseLine(".clear", true);
-	App.addResponseLine("Break, and also clear the local scope.");
+	App.addResponseHelpLine("    whoami            show Outsider's profile.", true);
+	App.addResponseHelpLine("    contacts          show infomation to contact me", true);
+	App.addResponseHelpLine("    show projects     list projects I done,", true);
+	App.addResponseHelpLine("    show skills       list skills I have");
 };
 
+App.addResponseHelpLine = function(msg, ignore_prompt) {
+  $('<div class="line"><pre>' + msg + '</pre></div>').appendTo($('#terminal'));
+  if (!ignore_prompt) {
+    App.addLine();
+    $('input:last').focus();
+  }
+};
 
 jQuery.commandLineHistory('.readLine');

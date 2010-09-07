@@ -23,7 +23,7 @@ repl2.readLine = function(_cmd, uid) {
 	output_s;
 
 	if (parsedKeyword) {
-		return ['...'];
+		return ['|'];
 	}
 
 	buffered_cmd += _cmd;
@@ -45,7 +45,7 @@ repl2.readLine = function(_cmd, uid) {
 		buffered_cmd = '';
 	} catch(e) {
 		if (e instanceof SyntaxError) {
-			output.push('...');
+			output.push('SyntaxError');
 		} else {
 			output.push("Error: " + e.stack.split("\n")[0]);
 			buffered_cmd = '';
