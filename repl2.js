@@ -26,6 +26,27 @@ repl2.readLine = function(_cmd, uid) {
 		return ['|'];
 	}
 
+    var isUserCommand = userCommand(cmd, uid)
+    if (isUserCommand) {
+        var output = [];
+        sys.puts(cmd);
+        switch (cmd) {
+            case "whoami()":
+               output.push("Outsider. Front-end & Server-side Web developer");
+               return output;
+            case "contacts()":
+               output.push("Blog: http://blog.outsider.ne.kr");
+               output.push("email: outsideris@gmail.com");
+               return output
+            case "projects()":
+               output.push("HotFlow: Scala Project");
+               return output;
+            case "skills()":
+               output.push("Java, Scala, Javascript, HTML, CSS, node.js, Spring, jQuery, MongDB");
+               return output;
+        }
+    }
+
 	buffered_cmd += _cmd;
 	buffered_cmd = convertToScope(buffered_cmd, uid);
 
@@ -97,6 +118,20 @@ function parseREPLKeyword(cmd, uid) {
 		return true;
 	}
 	return false;
+}
+
+var userCommand = function(cmd) {
+    switch (cmd) {
+       case "whoami()":
+          return true;
+       case "contacts()":
+          return true;
+       case "projects()":
+          return true;
+       case "skills()":
+          return true;
+    }
+    return false;
 }
 
 //sys.puts("Server at http://" + HOST + ':' + PORT.toString() + '/');
