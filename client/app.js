@@ -45,7 +45,11 @@ App.send = function(cmd) {
 		success: function(data) {
 			res = data.response;
 			for (var i = 0; i < res.length; i++) {
-				App.addResponseLine(res[i], false);
+                if (i === res.length -1) {
+				    App.addResponseLine(res[i], false);
+                } else {
+                    App.addResponseLine(res[i], true);
+                }
 			}
 
 			if (res.length === 0) {
@@ -106,10 +110,10 @@ $('.readLine').live('keypress', function(e) {
 });
 
 App.showHelp = function() {
-	App.addResponseHelpLine("    whoami            show Outsider's profile.", true);
-	App.addResponseHelpLine("    contacts          show infomation to contact me", true);
-	App.addResponseHelpLine("    show projects     list projects I done,", true);
-	App.addResponseHelpLine("    show skills       list skills I have");
+	App.addResponseHelpLine("    whoami()       show Outsider's profile.", true);
+	App.addResponseHelpLine("    contacts()     show infomation to contact me", true);
+	App.addResponseHelpLine("    projects()     list projects I done,", true);
+	App.addResponseHelpLine("    skills()       list skills I have");
 };
 
 App.addResponseHelpLine = function(msg, ignore_prompt) {
