@@ -89,7 +89,7 @@ body {
 #terminal div.line {
   width: 100%;
   margin-bottom: 5px;
-  color: #45FF17;
+  color: #55D839;
 }
 
 #terminal input {
@@ -99,24 +99,32 @@ body {
   display: inline;
   padding: 2px;
   background: black;
-  color: #45FF17;
+  color: #55D839;
   font-size: 18px;
   font-family: Monaco, monospace;
 }
 
 #terminal p, #terminal pre {
   margin: 2px;
-  color: #45FF17;
+  color: #55D839;
   font-size: 18px;
   font-family: Monaco, serif;
 }
 
-#terminal a {
-  color: #6495ED;
+#terminal a:link,
+#terminal a:visited,
+#terminal a:hover,
+#terminal a:active {
+  text-decoration: none;
+  border-bottom: 2px dashed #BF0D23;
+}
+
+#terminal .line a  {
+  color: #55D839;
 }
 
 #terminal span.prompt {
-  color: #45FF17;
+  color: #55D839;
   font-size: 16px;
   margin-left: 2px;
 }
