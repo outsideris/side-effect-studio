@@ -42,7 +42,7 @@ repl2.readLine = function(_cmd, uid, res) {
         var db = new Db('sideeffect_main', new Server("127.0.0.1", 27017, {}));
         db.open(function(err, db) {
             db.collection("trynode", function(err, collection) {
-               collection.find({"cmd":cmd}, function(err, cursor) {
+               collection.find({"cmd":cmd}, {"sort":"order"}, function(err, cursor) {
                   sys.debug("before each");
                   cursor.each(function(err, item) {
                      if (item != null) {
@@ -54,7 +54,8 @@ repl2.readLine = function(_cmd, uid, res) {
                             response: output   
 	                     });
                      }
-                  }); 
+                  });
+                  db.close();
               });   
            });        
         });
@@ -138,15 +139,14 @@ function parseREPLKeyword(cmd, uid) {
 }
 
 var userCommand = function(cmd) {
-    cmd = stripBrace(cmd); 
     switch (cmd) {
-       case "whoami":
+       case "whoami()":
           return true;
-       case "contacts":
+       case "contacts()":
           return true;
-       case "projects":
+       case "projects()":
           return true;
-       case "skills":
+       case "skills()":
           return true;
     }
     return false;
