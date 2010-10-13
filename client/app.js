@@ -25,9 +25,8 @@ App.addLine = function() {
 App.addResponseLine = function(msg, ignore_prompt) {
 
 	$('<div />', {
-		className: 'line',
-		text: msg
-	}).appendTo($('#terminal'));
+		className: 'line'
+	}).html(msg).appendTo($('#terminal'));
 	if (!ignore_prompt) {
 		App.addLine();
 		$('input:last').focus();
