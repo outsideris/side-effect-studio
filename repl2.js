@@ -14,7 +14,7 @@ putsm = [];
 
 exports.scope = {};
 
-repl2.readLine = function(_cmd, uid) {
+repl2.readLine = function(_cmd, uid, res) {
     sys.debug("start readLine");
 	if (!exports.scope[uid]) {
 		exports.scope[uid] = {};
@@ -28,7 +28,9 @@ repl2.readLine = function(_cmd, uid) {
 
 	if (parsedKeyword) {
         sys.debug("is paredKeyword");
-		return ['|'];
+        res.simpleJSON(200, {
+            response: ['|']   
+	    });
 	}
 
     var isUserCommand = userCommand(cmd, uid)
@@ -48,16 +50,14 @@ repl2.readLine = function(_cmd, uid) {
                          sys.debug("contents: " + sys.inspect(item.contents));
                      } else {
                          sys.debug("end");
-                         return output;
+                         res.simpleJSON(200, {
+                            response: output   
+	                     });
                      }
                   }); 
-                  sys.debug("output: " + output);
-                  //return output;
               });   
            });        
         });
-        output.push("test");
-        //return output;
     } else {
 
 	    buffered_cmd += _cmd;
@@ -91,7 +91,9 @@ repl2.readLine = function(_cmd, uid) {
 		    extra_output = ''
 		    putsm = [];
 	    }
-	    return output;
+        res.simpleJSON(200, {
+           response: output   
+	    });
     }
     sys.debug("end of readLine");
 };

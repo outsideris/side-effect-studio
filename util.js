@@ -78,11 +78,10 @@ util.get('/version', function(req, res) {
 });
 
 util.get('/cmd', function(req, res) {
+    sys.debug("/cmd");
 	var param = qs.parse(url.parse(req.url).query),
 	cmd = param.cmd,
 	uid = param.uid;
-	res.simpleJSON(200, {
-		response: repl2.readLine(cmd, 'nodejs' + uid)
-	});
+	repl2.readLine(cmd, 'nodejs' + uid, res)
 });
 
