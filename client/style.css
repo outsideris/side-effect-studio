@@ -61,23 +61,6 @@ body {
   padding: 0;
 }
 
-
-
-#header {
-  width: 100%px;
-  margin:50px auto 50px auto;
-  color: #402817;
-}
-#header a {
-  color: #402817;
-}
-
-#header p {
-  padding: 7px;
-  color: #9f8e81;
-  font-size: 15px;
-}
-
 #terminal {
   margin:50px auto 50px auto;
   border: 1px solid black;
