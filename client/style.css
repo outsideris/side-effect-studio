@@ -129,20 +129,6 @@ body {
   padding: 2px;
 }
 
-#rhs {
-color: #9f8e81;
-margin: 70px 10px 0 30px;
-float: left;
-text-align: left;
-width: 350px;
-font-size: 15px;
-line-height: 18px;
-}
-
-#rhs a {
-color: #9f8e81;
-}
-
 #container {
   width: 1000px;
   margin: 0 auto;
