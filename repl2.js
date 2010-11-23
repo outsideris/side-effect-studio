@@ -39,7 +39,7 @@ repl2.readLine = function(_cmd, uid, res) {
         cmd = stripBrace(cmd); 
         sys.debug("user command: " + cmd);
 
-        var db = new Db('sideeffect_main', new Server("127.0.0.1", 27017, {}));
+        var db = new Db('sideeffect_main', new Server(process.env["MONGODB_HOST"], process.env["MONGODB_PORT"], {}));
         db.open(function(err, db) {
             db.collection("trynode", function(err, collection) {
                collection.find({"cmd":cmd}, {"sort":"order"}, function(err, cursor) {
@@ -52,7 +52,7 @@ repl2.readLine = function(_cmd, uid, res) {
                          sys.debug("end");
                          res.simpleJSON(200, {
                             response: output   
-	                     });
+                         });
                      }
                   });
                   db.close();
