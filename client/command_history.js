@@ -61,6 +61,8 @@ var CommandLineHistory = {
 		var selector_with_pos = '#command_line_history div:eq(' + pos + ')',
 		text = $(selector_with_pos).text();
 		$(selector + ':last').val(text);
+		
+		setTimeout("$('input:last').moveCursor($('input:last').val().length)", 20);
 	}
 
 };
