@@ -27,8 +27,10 @@ app.configure('pruduction', function() {
     app.use(express.errorHandler());      
 });
 
+app.set('views', __dirname + '/views');
+
 app.get('/', function(req, res) {
-    res.send('hello world');      
+    res.render('index');      
 });
 
 app.listen(3000);
