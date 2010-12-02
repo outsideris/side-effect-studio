@@ -6,6 +6,13 @@ fs = require('fs'),
 url = require('url'),
 http = require('http'),
 util = require('./util');
+app = require('express').createServer();
+
+app.get('/', function(req, res) {
+    res.send('hello world');      
+});
+
+app.listen(3000);
 
 http.createServer(function(req, res) {
 	var handler = util.getMap[url.parse(req.url).pathname] || util.not_found;
