@@ -5,8 +5,27 @@ var sys = require('sys'),
 fs = require('fs'),
 url = require('url'),
 http = require('http'),
-util = require('./util');
-app = require('express').createServer();
+util = require('./util'),
+express = require('express'),
+app = express.createServer();
+
+app.configure(function() {
+    app.use(express.methodOverride());
+    app.use(express.bodyDecoder());
+    app.use(app.router);
+    app.use(express.staticProvider(__dirname + '/static'));
+});
+
+app.configure('development', function() {
+    app.use(express.errorHandler({ 
+        dumpException: true, 
+        showStack: true
+    }));      
+});
+
+app.configure('pruduction', function() {
+    app.use(express.errorHandler());      
+});
 
 app.get('/', function(req, res) {
     res.send('hello world');      
