@@ -30,7 +30,7 @@ app.configure('pruduction', function() {
 app.set('views', __dirname + '/views');
 
 app.get('/', function(req, res) {
-    res.render('index');      
+    res.render('index.jade');      
 });
 
 app.listen(3000);
