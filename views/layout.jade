@@ -4,3 +4,40 @@ html(lang="ko")
 		title try nodejs
 		link(rel='stylesheet', src='/stylesheets/style.css')
 	body
+		.mainWrapper
+			.header
+				h1 SIDE EFFECT
+					span studio
+				h2 : node REPL
+				ul.nav
+					li
+						a(href: 'http://www.sideeffect.kr') Home
+						a(href: 'http://blog.outsider.ne.kr', target: '_blank') Home
+
+			#container
+				#wrapper
+					h1 try nodejs
+					
+					#terminal
+						p.response node.js version
+							span#nodejs_version #
+							br 
+							| type "help()" for help
+						.line
+							span.prompt &gt;
+						input.readLine.active(type: 'text')
+		.footer
+			div
+				a(href: 'http://frends.kr', target: '_blank')
+					img(src: '/images/frends_banner.gif', alt: 'FRENDS')
+				a(href: 'http://www.springsprout.org', target: '_blank')
+					img(src: '/images/springsprout_banner.png', alt: 'º½½Ï')
+				div
+					| Copyright 2010
+					a(href: 'http://blog.outsider.ne.kr', target: '_blank') Outsider
+					| , All rights reserved.
+		
+		script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js')
+		script(src='/javascripts/log.js')
+		script(src='/javascripts/command_history.js')
+		script(src='/javascripts/app.js')
