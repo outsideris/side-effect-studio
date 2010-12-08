@@ -1,0 +1,105 @@
+html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: url(../images/bg_header_new.png) repeat-x 0% 0%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-size:12px;
+}
+
+/* HEADER */
+.header {
+    width: 960px;
+    height: 60px;
+    margin: 0 auto;
+	padding: 0;
+	position: relative;
+}
+
+.header h1 {
+	float:left;
+	margin:10px 5px 0 0;
+	padding:0;
+	font-size: 30px;
+}
+
+.header h1 span {
+	font-size: 15px;
+}
+
+.header h2 {
+	position:relative;
+	margin:0;
+	padding:20px 0 0 0;
+	font-size: 20px;
+	color:#555;
+}
+
+.header .nav {
+	position: absolute;
+	right:0;
+	top: 10px;
+	list-style-type: none;
+}
+
+.header .nav li {
+	float: left;
+	padding-right: 20px;
+}
+
+.header .nav li a,
+.header .nav li a:link,
+.header .nav li a:active,
+.header .nav li a:visited {
+	color: #373737;
+	text-decoration: none;
+}
+
+.mainWrapper {
+	min-height: 100%;
+	margin-bottom: -60px;
+}
+
+/* FOOTER */
+.footer {
+    height: 60px;
+	margin: 0;
+	padding: 0;
+	background: #F1F1F1;
+	border-top: 2px solid #DDD;
+	font-size: 12px;
+	position:relative;
+}
+
+.footer div {
+	width: 960px;
+	margin: 0 auto;
+	padding-top: 10px;
+	color:#4a4a4a;
+	font-weight:bold;
+	font-size: 1.1em;
+}
+
+.footer div div {
+	padding-top: 10px;
+}
+
+.footer div a,
+.footer div a:link,
+.footer div a:active,
+.footer div a:visited {
+	text-decoration: underline;
+	color:#4a4a4a;
+}
+
+.footer div img {
+	float:right;
+	position: relative;
+	border:solid 1px;
+	margin: 0 0 0 10px;
+}
