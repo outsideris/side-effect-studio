@@ -16,24 +16,16 @@ html(lang="ko")
 						a(href: 'http://blog.outsider.ne.kr', target: '_blank') Blog
 
 			#container
-				#wrapper
-					h1 try nodejs
+				#wrapper!= body
 					
-					#terminal
-						p.response node.js version
-							span#nodejs_version #
-							br 
-							| type "help()" for help
-						.line
-							span.prompt &gt;
-						input.readLine.active(type: 'text')
 		.footer
 			div
 				a(href: 'http://frends.kr', target: '_blank')
 					img(src: '/images/frends_banner.gif', alt: 'FRENDS')
 				a(href: 'http://www.springsprout.org', target: '_blank')
 					img(src: '/images/springsprout_banner.png', alt: '봄싹')
-				img(src: '/images/PoweredMongoDBbeige50.png', alt: 'Powered by MongoDB', class: 'badge')
+				a(href: 'http://www.mongodb.org/', target: '_blank', class: 'badge')
+					img(src: '/images/PoweredMongoDBbeige50.png', alt: 'Powered by MongoDB')
 				div
 					| Copyright 2010
 					a(href: 'http://blog.outsider.ne.kr', target: '_blank') Outsider
