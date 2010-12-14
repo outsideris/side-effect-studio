@@ -141,6 +141,7 @@ a:hover	{ text-decoration: none; }
 }
 
 #wrapper {
+  width: 960px;
   padding-left: 20px;
   float: left;
   padding-left: 10px;
