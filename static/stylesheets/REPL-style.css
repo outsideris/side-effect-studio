@@ -75,26 +75,3 @@ table {
   padding-left: 0;
   margin-left: 0;
 }
-
-#wrapper {
-  width: 950px;
-  padding-left: 20px;
-  float: left;
-  padding-left: 10px;
-  margin:0;
-}
-#wrapper h1 {
-  margin: 4px;
-  padding: 2px;
-}
-
-#container {
-  width: 1000px;
-  margin: 0 auto;
-  background: #fff; 
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-top: 1px solid #fff;
-  padding-bottom: 76px;
-  margin-bottom: 200px;
-}

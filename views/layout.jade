@@ -18,6 +18,12 @@ html(lang="ko")
 
 			#container
 				#wrapper!= body
+				
+		#badgeWrapper
+			a(href: 'http://nodejs.org/', target: '_blank', class: 'badge')
+				img(src: '/images/nodejs-badge.png', alt: 'Powered by node.js')
+			a(href: 'http://www.mongodb.org/', target: '_blank', class: 'badge')
+				img(src: '/images/PoweredMongoDBbrown.png', alt: 'Powered by MongoDB')
 					
 		.footer
 			div
@@ -25,12 +31,10 @@ html(lang="ko")
 					img(src: '/images/frends_banner.gif', alt: 'FRENDS')
 				a(href: 'http://www.springsprout.org', target: '_blank')
 					img(src: '/images/springsprout_banner.png', alt: '봄싹')
-				a(href: 'http://www.mongodb.org/', target: '_blank', class: 'badge')
-					img(src: '/images/PoweredMongoDBbeige50.png', alt: 'Powered by MongoDB')
 				div
-					| Copyright 2010
+					|Copyright 2010 &copy;
 					a(href: 'http://blog.outsider.ne.kr', target: '_blank') Outsider
-					| , All rights reserved.
+					|, All rights reserved.
 		
 		script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js')
 		script(src='/javascripts/common.js')

@@ -70,7 +70,6 @@ table { /* markup tables with 'cellspacing="0"' */
 html, body {
 	height: 100%;
 	font: 1.2em/1.7 Helvetica, AppleGothic, Gulim, '굴림', sans-serif; 
-	font-size: 75%;
 }
 
 body {
@@ -88,7 +87,7 @@ a:hover	{ text-decoration: none; }
 
 /* HEADER */
 .header {
-    width: 960px;
+    width: 980px;
     height: 60px;
     margin: 0 auto;
 	padding: 0;
@@ -97,33 +96,34 @@ a:hover	{ text-decoration: none; }
 
 .header h1 {
 	float:left;
-	margin:10px 5px 0 0;
+	margin: 0 5px 0 0;
 	padding:0;
-	font-size: 30px;
+	font-size: 1.4em;
 }
 
 .header h1 span {
-	font-size: 15px;
+	font-size: 0.5em;
 }
 
 .header h2 {
 	position:relative;
 	margin:0;
-	padding:20px 0 0 0;
-	font-size: 20px;
+	padding:13px 0 0 0;
+	font-size: 0.9em;
 	color:#555;
 }
 
 .header .nav {
 	position: absolute;
 	right:0;
-	top: 10px;
+	top: 20px;
 	list-style-type: none;
 }
 
 .header .nav li {
 	float: left;
 	padding-right: 20px;
+	font-size: 0.5em;
 }
 
 .header .nav li a,
@@ -134,9 +134,32 @@ a:hover	{ text-decoration: none; }
 	text-decoration: none;
 }
 
+/* CONTENTS */
 .mainWrapper {
 	min-height: 100%;
 	margin-bottom: -60px;
+}
+
+#wrapper {
+  padding-left: 20px;
+  float: left;
+  padding-left: 10px;
+  margin:0;
+}
+#wrapper h1 {
+  margin: 4px;
+  padding: 2px;
+}
+
+#container {
+  width: 980px;
+  margin: 0 auto;
+  background: #fff; 
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-top: 1px solid #fff;
+  padding-bottom: 76px;
+  margin-bottom: 200px;
 }
 
 /* FOOTER */
@@ -176,4 +199,15 @@ a:hover	{ text-decoration: none; }
 	position: relative;
 	border:solid 1px;
 	margin: 0 0 0 10px;
+}
+
+/* BADGE */
+#badgeWrapper {
+  width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#badgeWrapper a {
+	margin-right: 5px;
 }
