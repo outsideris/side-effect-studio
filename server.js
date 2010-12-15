@@ -6,7 +6,10 @@ fs = require('fs'),
 url = require('url'),
 http = require('http'),
 util = require('./util'),
+child_process = require('child_process'),
+qs = require('querystring'),
 express = require('express'),
+repl2 = require('./repl2'),
 app = express.createServer();
 
 app.configure(function() {
@@ -31,6 +34,21 @@ app.set('views', __dirname + '/views');
 
 app.get('/', function(req, res) {
     res.render('index.jade');      
+});
+
+app.get('/version', function(req, res) {
+	child_process.exec('node --version', function(err, stdout, stderr) {
+		if (err) throw err;
+		res.send({nodejs_version: stdout});
+	});
+});
+
+app.get('/cmd', function(req, res) {
+	var param = qs.parse(url.parse(req.url).query),
+	cmd = param.cmd,
+	uid = param.uid;
+	sys.debug("before repl2");
+	repl2.readLine(cmd, 'nodejs' + uid, res)
 });
 
 app.listen(3000);

@@ -28,7 +28,7 @@ repl2.readLine = function(_cmd, uid, res) {
 
 	if (parsedKeyword) {
         sys.debug("is paredKeyword");
-        res.simpleJSON(200, {
+        res.send({
             response: ['|']   
 	    });
 	}
@@ -53,7 +53,7 @@ repl2.readLine = function(_cmd, uid, res) {
 	                         sys.debug("contents: " + sys.inspect(item.contents));
 	                     } else {
 	                         sys.debug("end");
-	                         res.simpleJSON(200, {
+	                         res.send({
 	                            response: output   
 	                         });
 	                     }
@@ -96,7 +96,7 @@ repl2.readLine = function(_cmd, uid, res) {
 		    extra_output = ''
 		    putsm = [];
 	    }
-        res.simpleJSON(200, {
+        res.send({
            response: output   
 	    });
     }
