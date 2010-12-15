@@ -1,7 +1,7 @@
 #terminal {
   margin:20px auto 50px auto;
   border: 1px solid black;
-  height: 400px;
+  height: 500px;
   background: black;
   overflow: auto;
   line-height: 1.2;
@@ -39,6 +39,7 @@
 #terminal a:hover,
 #terminal a:active {
   text-decoration: none;
+  color: #55D839;
   border-bottom: 2px dashed #BF0D23;
 }
 
