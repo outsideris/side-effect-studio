@@ -47,7 +47,6 @@ app.get('/cmd', function(req, res) {
 	var param = qs.parse(url.parse(req.url).query),
 	cmd = param.cmd,
 	uid = param.uid;
-	sys.debug("before repl2");
 	repl2.readLine(cmd, 'nodejs' + uid, res)
 });
 
