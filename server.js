@@ -12,6 +12,7 @@ express = require('express'),
 repl2 = require('./repl2'),
 app = express.createServer();
 
+// Environment configration
 app.configure(function() {
     app.use(express.methodOverride());
     app.use(express.bodyDecoder());
@@ -30,8 +31,13 @@ app.configure('pruduction', function() {
     app.use(express.errorHandler());      
 });
 
+app.configure('test', function() {
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+}
+
 app.set('views', __dirname + '/views');
 
+// Controller
 app.get('/', function(req, res) {
     res.render('index.jade');      
 });
