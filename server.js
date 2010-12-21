@@ -33,7 +33,7 @@ app.configure('pruduction', function() {
 
 app.configure('test', function() {
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-}
+});
 
 app.set('views', __dirname + '/views');
 
