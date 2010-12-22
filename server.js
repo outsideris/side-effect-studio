@@ -1,16 +1,12 @@
-PORT = 8000;
-HOST = null; //localhost
-
 var sys = require('sys'),
 fs = require('fs'),
 url = require('url'),
-http = require('http'),
 util = require('./util'),
 child_process = require('child_process'),
 qs = require('querystring'),
 express = require('express'),
 repl2 = require('./repl2'),
-app = express.createServer();
+app = module.exports = express.createServer();
 
 // Environment configration
 app.configure(function() {
@@ -56,20 +52,6 @@ app.get('/cmd', function(req, res) {
 	repl2.readLine(cmd, 'nodejs' + uid, res)
 });
 
-app.listen(3000);
-
-http.createServer(function(req, res) {
-	var handler = util.getMap[url.parse(req.url).pathname] || util.not_found;
-
-	res.simpleJSON = function(code, obj) {
-		var body = JSON.stringify(obj);
-		res.writeHead(code, {
-			'Content-Type': 'text/json',
-			'Content-Length': body.length
-		});
-		res.write(body);
-		res.close();
-	};
-
-	handler(req, res);
-}).listen(PORT, HOST);
+if (!module.parent) {
+    app.listen(3000);
+}
