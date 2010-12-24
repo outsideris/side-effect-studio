@@ -142,7 +142,7 @@ function parseREPLKeyword(cmd, uid) {
 	return false;
 }
 
-var userCommand = function(cmd) {
+repl2.userCommand = function(cmd) {
     switch (cmd) {
        case "whoami()":
           return true;
