@@ -80,8 +80,33 @@ module.exports = {
             var version = JSON.parse(res.body);
             child_process.exec('node --version', function(err, stdout, stderr) {
                 if (err) throw err;
-                assert.eql({"nodejs_version":stdout}, version)
+                assert.eql({"nodejs_version":stdout}, version);
             });
+        });
+    },
+    
+    // repl command Test
+    'test cmd URL': function() {
+        assert.response(server, {
+            url: '/cmd',
+            method: 'GET'
+        }, {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' }
+        });
+    },
+    'test cmd URL - command whoami()': function() {
+        assert.response(server, {
+            url: '/cmd?cmd=whoami()&uid=393320152069',
+            method: 'GET',
+        }, {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' }
+        },
+        
+        function(res) {
+            var result = JSON.parse(res.body);
+            assert.eql({"response":["Nickname: Outsider","Front-end & Server-side Web Developer"]}, result);
         });
     },
 };
