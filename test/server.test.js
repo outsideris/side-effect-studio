@@ -105,4 +105,34 @@ module.exports = {
             headers: { 'Content-Type': 'application/json' }
         });
     },
+    'test request for /cmd : numeric': function() {
+        assert.response(server, {
+            url: '/cmd?cmd=1&uid=393320152069',
+            method: 'GET',
+        }, {
+            status: 200,
+            body: '{"response":["1"]}',
+            headers: { 'Content-Type': 'application/json' }
+        });
+    },
+    'test request for /cmd : undefined error': function() {
+        assert.response(server, {
+            url: '/cmd?cmd=a&uid=393320152069',
+            method: 'GET',
+        }, {
+            status: 200,
+            body: '{"response":["Error: ReferenceError: a is not defined"]}',
+            headers: { 'Content-Type': 'application/json' }
+        });
+    },
+    'test request for /cmd : simple JavaScript Command': function() {
+        assert.response(server, {
+            url: '/cmd?cmd=var%20test=1&uid=393320152069',
+            method: 'GET',
+        }, {
+            status: 200,
+            body: '{"response":["1"]}',
+            headers: { 'Content-Type': 'application/json' }
+        });
+    },
 };
