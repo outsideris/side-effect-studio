@@ -101,12 +101,8 @@ module.exports = {
             method: 'GET',
         }, {
             status: 200,
+            body: '{"response":["Nickname: Outsider","Front-end & Server-side Web Developer"]}',
             headers: { 'Content-Type': 'application/json' }
-        },
-        
-        function(res) {
-            var result = JSON.parse(res.body);
-            assert.eql({"response":["Nickname: Outsider","Front-end & Server-side Web Developer"]}, result);
         });
     },
 };
