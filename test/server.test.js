@@ -9,7 +9,7 @@ var server = require('../server.js'),
     
 module.exports = {
     // static test
-    'test Staticfiles URL: cufon-yui.js': function() {
+    'test request for static files : /javascripts/cufon-yui.js': function() {
         assert.response(server, {
             url: '/javascripts/cufon-yui.js',
             method: 'GET'
@@ -17,7 +17,7 @@ module.exports = {
             status: 200
         });
     },
-    'test Staticfiles URL: Orbitron_900-Orbitron_700.font.js': function() {
+    'test request for static files : /javascripts/Orbitron_900-Orbitron_700.font.js': function() {
         assert.response(server, {
             url: '/javascripts/Orbitron_900-Orbitron_700.font.js',
             method: 'GET'
@@ -25,7 +25,7 @@ module.exports = {
             status: 200
         });
     },
-    'test Staticfiles URL: nodejs-badge.png': function() {
+    'test request for static files : /images/nodejs-badge.png': function() {
         assert.response(server, {
             url: '/images/nodejs-badge.png',
             method: 'GET'
@@ -33,15 +33,15 @@ module.exports = {
             status: 200
         });
     },
-    'test Staticfiles URL: PoweredMongoDBbrown.png': function() {
+    'test request for static files : /images/PoweredMongoDBbrown.png': function() {
         assert.response(server, {
-            url: '/images/PoweredMongoDBbrown.png ',
+            url: '/images/PoweredMongoDBbrown.png',
             method: 'GET'
         }, {
             status: 200
         });
     },
-    'test Staticfiles URL: common-style.css': function() {
+    'test request for static files : /stylesheets/common-style.css': function() {
         assert.response(server, {
             url: '/stylesheets/common-style.css',
             method: 'GET'
@@ -49,7 +49,7 @@ module.exports = {
             status: 200
         });
     },
-    'test Staticfiles URL: REPL-style.css': function() {
+    'test request for static files : /stylesheets/REPL-style.css': function() {
         assert.response(server, {
             url: '/stylesheets/REPL-style.css',
             method: 'GET'
@@ -59,7 +59,7 @@ module.exports = {
     },
     
     // Controller Test
-    'test root controller URL': function() {
+    'test request for root controller : /': function() {
         assert.response(server, {
             url: '/',
             method: 'GET'
@@ -67,7 +67,7 @@ module.exports = {
             status: 200
         });
     },
-    'test version URL': function() {
+    'test request for /version': function() {
         assert.response(server, {
             url: '/version',
             method: 'GET'
@@ -86,7 +86,7 @@ module.exports = {
     },
     
     // repl command Test
-    'test cmd URL': function() {
+    'test request for /cmd': function() {
         assert.response(server, {
             url: '/cmd',
             method: 'GET'
@@ -95,7 +95,7 @@ module.exports = {
             headers: { 'Content-Type': 'application/json' }
         });
     },
-    'test cmd URL - command whoami()': function() {
+    'test request for /cmd : command whoami()': function() {
         assert.response(server, {
             url: '/cmd?cmd=whoami()&uid=393320152069',
             method: 'GET',
