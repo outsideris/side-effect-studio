@@ -1,7 +1,6 @@
 var sys = require('sys'),
 fs = require('fs'),
 url = require('url'),
-util = require('./util'),
 child_process = require('child_process'),
 qs = require('querystring'),
 express = require('express'),
