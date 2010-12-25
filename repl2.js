@@ -131,13 +131,13 @@ repl2.convertToScope = function(cmd, uid) {
 
 repl2.parseREPLKeyword = function(cmd, uid) {
 	switch (cmd) {
-	case ".break":
-		buffered_cmd = '';
-		return true;
-	case ".clear":
-		buffered_cmd = '';
-		exports.scope[uid] = {};
-		return true;
+    	case ".break":
+    		buffered_cmd = '';
+    		return true;
+    	case ".clear":
+    		buffered_cmd = '';
+    		exports.scope[uid] = {};
+    		return true;
 	}
 	return false;
 }
