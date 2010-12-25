@@ -7,7 +7,6 @@ buffered_cmd = '',
 repl2 = exports,
 Db = mongodb.Db,
 Server = mongodb.Server,
-trimmer = /^\s*(.+)\s*$/m,
 scopedVar = /^\s*var\s*([_\w\$]+)(.*)$/m,
 scopeFunc = /^\s*function\s*([_\w\$]+)/,
 putsm = [];
