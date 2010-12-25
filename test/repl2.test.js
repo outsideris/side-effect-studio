@@ -31,4 +31,15 @@ module.exports = {
     'test userCommand : somethings()': function() {
         assert.equal(false, repl2.userCommand('shomthins()'));
     },
+    
+    // parseREPLKeyword
+    'test parseREPLKeyword : .break': function() {
+        assert.equal(true, repl2.parseREPLKeyword('.break'));
+    },
+    'test parseREPLKeyword : .clear': function() {
+        assert.equal(true, repl2.parseREPLKeyword('.clear'));
+    },
+    'test parseREPLKeyword : something': function() {
+        assert.equal(false, repl2.parseREPLKeyword('something'));
+    },
 };
