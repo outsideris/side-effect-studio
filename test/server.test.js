@@ -135,4 +135,34 @@ module.exports = {
             headers: { 'Content-Type': 'application/json' }
         });
     },
+    'test request for /cmd : define variable command': function() {
+        assert.response(server, {
+            url: '/cmd?cmd=var+a+%3D+%222%22%3B&uid=438098058544',
+            method: 'GET',
+        }, {
+            status: 200,
+            body: '{"response":["\'2\'"]}',
+            headers: { 'Content-Type': 'application/json' }
+        });
+    },
+    'test request for /cmd : define function of variable type command': function() {
+        assert.response(server, {
+            url: '/cmd?cmd=var+b+%3D+function()+%7B%7D%3B&uid=438098058544',
+            method: 'GET',
+        }, {
+            status: 200,
+            body: '{"response":["[Function]"]}',
+            headers: { 'Content-Type': 'application/json' }
+        });
+    },
+    'test request for /cmd : define function command': function() {
+        assert.response(server, {
+            url: '/cmd?cmd=function+c()+%7B%7D%3B&uid=438098058544',
+            method: 'GET',
+        }, {
+            status: 200,
+            body: '{"response":["[Function: c]"]}',
+            headers: { 'Content-Type': 'application/json' }
+        });
+    },
 };

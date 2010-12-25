@@ -103,7 +103,9 @@ repl2.readLine = function(_cmd, uid, res) {
 };
 
 repl2.trimWhitespace = function(cmd) {
-	return cmd.replace(/^\s+/, '').replace(/\s+$/, '');
+  if (cmd) {
+ 	  return cmd.replace(/^\s+/, '').replace(/\s+$/, '');
+ 	}
 };
 
 repl2.convertToScope = function(cmd, uid) {
