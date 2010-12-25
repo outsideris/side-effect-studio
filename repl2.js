@@ -40,27 +40,27 @@ repl2.readLine = function(_cmd, uid, res) {
 
         var db = new Db('sideeffect_main', new Server(process.env["MONGODB_HOST"], process.env["MONGODB_PORT"], {}));
         db.open(function(err, db) {
-			db.authenticate(process.env["MONGODB_USER"], process.env["MONGODB_PASS"], function() {
-	            if (err) { sys.debug("DB Authentication error!"); }
-				
-	            db.collection("trynode", function(err, collection) {
-	               collection.find({"cmd":cmd}, {"sort":"order"}, function(err, cursor) {
-	                  sys.debug("before each");
-	                  cursor.each(function(err, item) {
-	                     if (item != null) {
-	                         output.push(item.contents); 
-	                         sys.debug("contents: " + sys.inspect(item.contents));
-	                     } else {
-	                         sys.debug("end");
-	                         res.send({
-	                            response: output   
-	                         });
-	                     }
-	                  });
-	                  db.close();
-	              });   
-	           }); 
-		   });       
+    			db.authenticate(process.env["MONGODB_USER"], process.env["MONGODB_PASS"], function() {
+    	            if (err) { sys.debug("DB Authentication error!"); }
+    				
+    	            db.collection("trynode", function(err, collection) {
+    	               collection.find({"cmd":cmd}, {"sort":"order"}, function(err, cursor) {
+    	                  sys.debug("before each");
+    	                  cursor.each(function(err, item) {
+    	                     if (item != null) {
+    	                         output.push(item.contents); 
+    	                         sys.debug("contents: " + sys.inspect(item.contents));
+    	                     } else {
+    	                         sys.debug("end");
+    	                         res.send({
+    	                            response: output   
+    	                         });
+    	                     }
+    	                  });
+    	                  db.close();
+    	              });   
+    	           }); 
+    		   });       
         });
     } else {
 
@@ -109,19 +109,18 @@ repl2.trimWhitespace = function(cmd) {
 };
 
 repl2.convertToScope = function(cmd, uid) {
-	var matches, tmp;
+	var matches;
 
 	// Replaces: var foo = "bar";  with: exports.scope.foo = bar;
 	matches = scopedVar.exec(cmd);
 	if (matches && matches.length == 3) {
-		tmp = "exports.scope." + uid + '.' + matches[1] + matches[2];
-		return tmp;
+		return "exports.scope." + uid + '.' + matches[1] + matches[2];
 	}
 
 	// Replaces: function foo() {};  with: foo = function foo() {};
-	matches = scopeFunc.exec(buffered_cmd);
+	matches = scopeFunc.exec(cmd);
 	if (matches && matches.length == 2) {
-		return matches[1] + " = " + buffered_cmd;
+		return matches[1] + " = " + cmd;
 	}
 
 	return cmd;

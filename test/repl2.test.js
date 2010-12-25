@@ -53,4 +53,12 @@ module.exports = {
     'test trimWhitespace : whitespace with start': function() {
         assert.equal('t est', repl2.trimWhitespace(' t est'));
     },
+    
+    // convertToScope
+    'test convertToScope : define variable command': function() {
+        assert.equal('exports.scope.393320152069.foo = "bar";', repl2.convertToScope('var foo = "bar";', '393320152069'));
+    },
+    'test convertToScope : define function command': function() {
+        assert.equal('foo = function foo() {};', repl2.convertToScope('function foo() {};', '393320152069'));
+    },
 };
