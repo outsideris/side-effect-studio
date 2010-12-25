@@ -20,8 +20,8 @@ repl2.readLine = function(_cmd, uid, res) {
 		exports.scope[uid] = {};
 	}
 
-    var cmd = trimWhitespace(_cmd),
-	parsedKeyword = parseREPLKeyword(cmd, uid),
+    var cmd = repl2.trimWhitespace(_cmd),
+	parsedKeyword = repl2.parseREPLKeyword(cmd, uid),
 	output = [],
 	output_tmp,
 	output_s;
@@ -33,10 +33,10 @@ repl2.readLine = function(_cmd, uid, res) {
 	    });
 	}
 
-    var isUserCommand = userCommand(cmd, uid)
+    var isUserCommand = repl2.userCommand(cmd, uid)
     if (isUserCommand) {
         var output = [];
-        cmd = stripBrace(cmd); 
+        cmd = repl2.stripBrace(cmd); 
         sys.debug("user command: " + cmd);
 
         var db = new Db('sideeffect_main', new Server(process.env["MONGODB_HOST"], process.env["MONGODB_PORT"], {}));
@@ -66,7 +66,7 @@ repl2.readLine = function(_cmd, uid, res) {
     } else {
 
 	    buffered_cmd += _cmd;
-	    buffered_cmd = convertToScope(buffered_cmd, uid);
+	    buffered_cmd = repl2.convertToScope(buffered_cmd, uid);
 
 	    try {
 		    with(exports.scope[uid]) {
@@ -103,14 +103,14 @@ repl2.readLine = function(_cmd, uid, res) {
     sys.debug("end of readLine");
 };
 
-var trimWhitespace = function(cmd) {
+repl2.trimWhitespace = function(cmd) {
 	var matches = trimmer.exec(cmd);
 	if (matches && matches.length == 2) {
 		return matches[1];
 	}
 };
 
-function convertToScope(cmd, uid) {
+repl2.convertToScope = function(cmd, uid) {
 	var matches, tmp;
 
 	// Replaces: var foo = "bar";  with: exports.scope.foo = bar;
@@ -129,7 +129,7 @@ function convertToScope(cmd, uid) {
 	return cmd;
 }
 
-function parseREPLKeyword(cmd, uid) {
+repl2.parseREPLKeyword = function(cmd, uid) {
 	switch (cmd) {
 	case ".break":
 		buffered_cmd = '';
@@ -142,7 +142,7 @@ function parseREPLKeyword(cmd, uid) {
 	return false;
 }
 
-var userCommand = function(cmd) {
+repl2.userCommand = function(cmd) {
     switch (cmd) {
        case "whoami()":
           return true;
@@ -156,10 +156,9 @@ var userCommand = function(cmd) {
     return false;
 }
 
-var stripBrace = function(cmd) {
+repl2.stripBrace = function(cmd) {
    return cmd.replace(/\(\)$/, "");
 }
-//sys.puts("Server at http://" + HOST + ':' + PORT.toString() + '/');
 
 sys.puts = function(msg) {
   putsm.push(msg);
