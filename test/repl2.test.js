@@ -42,4 +42,15 @@ module.exports = {
     'test parseREPLKeyword : something': function() {
         assert.equal(false, repl2.parseREPLKeyword('something'));
     },
+    
+    // trimWhitespace
+    'test trimWhitespace : whitespace with start and end': function() {
+        assert.equal('test', repl2.trimWhitespace(' test '));
+    },
+    'test trimWhitespace : whitespace with end': function() {
+        assert.equal('te st', repl2.trimWhitespace('te st '));
+    },
+    'test trimWhitespace : whitespace with start': function() {
+        assert.equal('t est', repl2.trimWhitespace(' t est'));
+    },
 };
