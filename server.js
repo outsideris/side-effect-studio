@@ -4,7 +4,7 @@ url = require('url'),
 child_process = require('child_process'),
 qs = require('querystring'),
 express = require('express'),
-repl2 = require('./repl2'),
+repl2 = require('./repl/repl2'),
 app = module.exports = express.createServer();
 
 // Environment configration
