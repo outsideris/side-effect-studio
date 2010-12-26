@@ -1,7 +1,7 @@
 Side Effect Studio
 ====================
 
-my experimental site for Breakable Toys[^1]
+my experimental site for Breakable Toys (one of patters by [Apprenticeship Patterns](http://apprenticeship-patterns.labs.oreilly.com/))
 
 ### Description
 - I'm inspired from [try mongodb](http://try.mongodb.org/)
@@ -14,6 +14,3 @@ my experimental site for Breakable Toys[^1]
 - [node-mongodb-native](https://github.com/christkv/node-mongodb-native)
 - [expresso](https://github.com/visionmedia/expresso) : only for test
 
-
-------------------
-[^1]: one of patters by [Apprenticeship Patterns](http://apprenticeship-patterns.labs.oreilly.com/)
