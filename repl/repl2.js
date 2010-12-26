@@ -14,7 +14,6 @@ putsm = [];
 exports.scope = {};
 
 repl2.readLine = function(_cmd, uid, res) {
-    sys.debug("start readLine");
 	if (!exports.scope[uid]) {
 		exports.scope[uid] = {};
 	}
@@ -26,7 +25,6 @@ repl2.readLine = function(_cmd, uid, res) {
 	output_s;
 
 	if (parsedKeyword) {
-        sys.debug("is paredKeyword");
         res.send({
             response: ['|']   
 	    });
@@ -36,7 +34,6 @@ repl2.readLine = function(_cmd, uid, res) {
     if (isUserCommand) {
         var output = [];
         cmd = repl2.stripBrace(cmd); 
-        sys.debug("user command: " + cmd);
 
         var db = new Db('sideeffect_main', new Server(process.env["MONGODB_HOST"], process.env["MONGODB_PORT"], {}));
         db.open(function(err, db) {
@@ -45,13 +42,10 @@ repl2.readLine = function(_cmd, uid, res) {
     				
     	            db.collection("trynode", function(err, collection) {
     	               collection.find({"cmd":cmd}, {"sort":"order"}, function(err, cursor) {
-    	                  sys.debug("before each");
     	                  cursor.each(function(err, item) {
     	                     if (item != null) {
     	                         output.push(item.contents); 
-    	                         sys.debug("contents: " + sys.inspect(item.contents));
     	                     } else {
-    	                         sys.debug("end");
     	                         res.send({
     	                            response: output   
     	                         });
@@ -99,7 +93,6 @@ repl2.readLine = function(_cmd, uid, res) {
            response: output   
 	    });
     }
-    sys.debug("end of readLine");
 };
 
 repl2.trimWhitespace = function(cmd) {
