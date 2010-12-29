@@ -5,7 +5,10 @@ child_process = require('child_process'),
 qs = require('querystring'),
 express = require('express'),
 repl2 = require('./repl/repl2'),
-app = module.exports = express.createServer();
+app = module.exports = express.createServer(),
+wiki = module.exports = express.createServer(),
+site_vhosts = [],
+vhost;
 
 // Environment configration
 app.configure(function() {
@@ -32,7 +35,13 @@ app.configure('test', function() {
 
 app.set('views', __dirname + '/views');
 
-// Controller
+// setting vhosts
+site_vhosts.push(express.vhost('sideeffect.kr', app));
+site_vhosts.push(express.vhost('wiki.sideeffect.kr', wiki));
+
+vhost = express.createServer.apply(this, site_vhosts);
+
+// REPL App Controller
 app.get('/', function(req, res) {
     res.render('index.jade');      
 });
@@ -51,6 +60,13 @@ app.get('/cmd', function(req, res) {
 	repl2.readLine(cmd, 'nodejs' + uid, res)
 });
 
+// WIKI Controller
+wiki.get('/', function(req, res) {
+  res.send('hello wiki');
+});
+
 if (!module.parent) {
     app.listen(3000);
+    wiki.listen(3001);
+    vhost.listen(80);
 }
