@@ -3,16 +3,17 @@ var sys = require('sys'),
     jsdom = require('jsdom'),
     gollum = module.exports;
 
-gollum.getGollumContents = function(url) {
+gollum.getContents = function(url, res) {
 
-  request({uri:'http://localhost:4567'}, function (error, response, body) {
+  request({uri:'http://localhost:4567'+url}, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      //sys.puts(body);
       var window = jsdom.jsdom(body).createWindow();
-      jsdom.jQueryify(window, 'http://cachedcommons.org/cache/jquery/1.4.2/javascripts/jquery-min.js', function (window, jquery) {
-        sys.puts(window.jQuery('.admin small').html());
-        return "test";
+      jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.4.2.min.js', function (window, jquery) {
+        var gollumContents = window.jQuery('.site').html();
+        res.render('gollum.jade', {
+          locals: {contents:gollumContents}
+        });
       });
     }
-  })
+  });
 }

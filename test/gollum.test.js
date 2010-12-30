@@ -13,8 +13,15 @@ module.exports = {
             url: '/',
             method: 'GET'
         }, {
-            status: 200,
-            body: 'hello wiki'
+            status: 200
+        });
+    },
+    'test request : /node.js': function() {
+        assert.response(server, {
+            url: '/node.js',
+            method: 'GET'
+        }, {
+            status: 200
         });
     },
 };
