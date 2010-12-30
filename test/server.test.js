@@ -3,7 +3,7 @@
 // Force test environment
 process.env.NODE_ENV = 'test';
 
-var server = require('../server.js'),
+var server = require('../controllers/sideeffect.js'),
     child_process = require('child_process'),
     assert = require('assert');
     
