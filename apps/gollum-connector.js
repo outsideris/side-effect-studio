@@ -1,19 +1,18 @@
 var sys = require('sys'),
-    http = require('http'),
+    request = require('request'),
+    jsdom = require('jsdom'),
     gollum = module.exports;
 
-gollum.http = http.createClient(4567, 'localhost');
-
 gollum.getGollumContents = function(url) {
-  var request = gollum.http.request('GET', '/', {'host': 'localhost'});
-  request.end();
-  request.on('response', function (response) {
-    console.log('STATUS: ' + response.statusCode);
-    console.log('HEADERS: ' + JSON.stringify(response.headers));
-    response.setEncoding('utf8');
-    response.on('data', function (chunk) {
-      console.log('BODY: ' + chunk);
-    });
-  });
-  
+
+  request({uri:'http://localhost:4567'}, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      //sys.puts(body);
+      var window = jsdom.jsdom(body).createWindow();
+      jsdom.jQueryify(window, 'http://cachedcommons.org/cache/jquery/1.4.2/javascripts/jquery-min.js', function (window, jquery) {
+        sys.puts(window.jQuery('.admin small').html());
+        return "test";
+      });
+    }
+  })
 }
