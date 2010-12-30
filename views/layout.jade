@@ -1,7 +1,8 @@
 !!! 5
 html(lang="ko")
 	head
-		title Side Effect Studio
+		title Side Effect Studio - 
+		  != title
 		link(rel='stylesheet', href='/stylesheets/common-style.css')
 		link(rel='stylesheet', href='/stylesheets/REPL-style.css')
 	body
@@ -9,7 +10,8 @@ html(lang="ko")
 			.header
 				h1 SIDE EFFECT
 					span studio
-				h2 : node REPL
+				h2 : 
+				  != title
 				ul.nav
 					li
 						a(href: 'http://www.sideeffect.kr') Home

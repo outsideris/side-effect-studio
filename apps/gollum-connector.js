@@ -11,7 +11,10 @@ gollum.getContents = function(url, res) {
       jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.4.2.min.js', function (window, jquery) {
         var gollumContents = window.jQuery('.site').html();
         res.render('gollum.jade', {
-          locals: {contents:gollumContents}
+          locals: {
+             title:'wiki',
+             contents:gollumContents
+          }
         });
       });
     }
