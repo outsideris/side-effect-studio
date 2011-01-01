@@ -13,7 +13,6 @@ gollum.getContents = function(url, res) {
         var gollumContents = window.$('.site')
                                 .find('a[href=/edit'+ url + ']').remove().end()
                                 .html();
-        sys.debug(gollumContents);
         res.render('gollum.jade', {
           locals: {
              title:'wiki',
