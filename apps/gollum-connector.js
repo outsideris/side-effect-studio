@@ -16,6 +16,7 @@ gollum.getContents = function(url, res) {
                                 .find('a[href=/edit/Home]').remove().end()
                                 .html();
         gollumContents = gollumContents.replace(regex, '$1')
+        gollumContents = gollumContents.replace(/&amp;rarr;/g, '&rarr;');
         res.render('gollum.jade', {
           locals: {
              title:'wiki',
