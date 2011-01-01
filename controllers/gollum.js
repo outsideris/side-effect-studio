@@ -7,6 +7,7 @@ wiki = module.exports = express.createServer();
 
 // Environment configration
 wiki.configure(function() {
+    wiki.use(express.methodOverride());
     wiki.use(express.bodyDecoder());
     wiki.use(express.staticProvider(__dirname.replace('/controllers', '') + '/static'));
 });
@@ -29,6 +30,10 @@ wiki.configure('test', function() {
 wiki.set('views', __dirname.replace('/controllers', '') + '/views');
 
 // WIKI Controller
+wiki.post('/compare/*', function(req, res) {
+  gollum.getContents(req.url + '/' + req.body.versions[0] + '...' + req.body.versions[1], res);
+});
+
 wiki.get('*', function(req, res) {
   gollum.getContents(req.url, res);
 });
