@@ -10,9 +10,11 @@ gollum.getContents = function(url, res) {
       var window = jsdom.jsdom(body).createWindow();
       
       jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.4.2.min.js', function (window, jquery) {
+        var regex = /(\<a href=\"\/\"\>Home\<\/a\>)\s+\|/g;
         var gollumContents = window.$('.site')
                                 .find('a[href=/edit'+ url + ']').remove().end()
                                 .html();
+        gollumContents = gollumContents.replace(regex, '$1')
         res.render('gollum.jade', {
           locals: {
              title:'wiki',
