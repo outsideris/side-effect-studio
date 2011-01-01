@@ -22,7 +22,6 @@ video, audio, mark, time, canvas, details {
 	padding: 0;
 	border: 0;
 	outline: 0;
-	font-size: 100%;
 	vertical-align: baseline;
 	background: transparent;
 }
@@ -82,7 +81,7 @@ a img 	{ border: none; }
 acronym,
 abbr	{ cursor: help;	}
 	
-a		{ color: #1fb0e0; text-decoration: none; }
+a		{ color: #4183C4; text-decoration: none; }
 a:hover	{ text-decoration: none; }
 
 /* HEADER */

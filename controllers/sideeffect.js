@@ -34,7 +34,10 @@ app.set('views', __dirname.replace('/controllers', '') + '/views');
 // REPL App Controller
 app.get('/', function(req, res) {
     res.render('index.jade', {
-      locals: { title:'node REPL'}
+      locals: { 
+        title:'node REPL',
+        customStyles: ''
+      }
     });      
 });
 

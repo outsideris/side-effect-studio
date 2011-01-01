@@ -18,6 +18,7 @@ gollum.getContents = function(url, res) {
         res.render('gollum.jade', {
           locals: {
              title:'wiki',
+             customStyles: '<link rel="stylesheet" href="/stylesheets/gollum.css">',
              contents:gollumContents
           }
         });
