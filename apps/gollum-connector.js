@@ -10,8 +10,10 @@ gollum.getContents = function(url, res) {
       var window = jsdom.jsdom(body).createWindow();
       
       jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.4.2.min.js', function (window, jquery) {
-        var gollumContents = window.$('.site').html();
-        // sys.debug(gollumContents);
+        var gollumContents = window.$('.site')
+                                .find('a[href=/edit'+ url + ']').remove().end()
+                                .html();
+        sys.debug(gollumContents);
         res.render('gollum.jade', {
           locals: {
              title:'wiki',
