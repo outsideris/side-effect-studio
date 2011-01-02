@@ -34,6 +34,10 @@ wiki.post('/compare/*', function(req, res) {
   gollum.getContents(req.url + '/' + req.body.versions[0] + '...' + req.body.versions[1], res);
 });
 
+wiki.get('/edit/*', function(req, res) {
+  res.send('', 404);
+});
+
 wiki.get('*', function(req, res) {
   gollum.getContents(req.url, res);
 });

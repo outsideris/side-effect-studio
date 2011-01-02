@@ -24,4 +24,20 @@ module.exports = {
             status: 200
         });
     },
+    'test request : /compare': function() {
+        assert.response(server, {
+            url: '/compare/node.js',
+            method: 'GET'
+        }, {
+            status: 200
+        });
+    },
+    'test request : block /edit': function() {
+        assert.response(server, {
+            url: '/edit/node.js',
+            method: 'GET'
+        }, {
+            status: 404
+        });
+    },
 };
