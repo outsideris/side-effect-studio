@@ -36,7 +36,8 @@ app.get('/', function(req, res) {
     res.render('index.jade', {
       locals: { 
         title:'node REPL',
-        customStyles: ''
+        customStyles: '',
+        customScript: '<script src="/javascripts/log.js"></script><script src="/javascripts/command_history.js"></script><script src="/javascripts/app.js"></script>'
       }
     });      
 });

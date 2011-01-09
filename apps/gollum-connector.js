@@ -24,6 +24,7 @@ gollum.getContents = function(url, res) {
           locals: {
              title:'wiki',
              customStyles: '<link rel="stylesheet" href="/stylesheets/gollum.css">',
+             customScript: '',
              contents:gollumContents
           }
         });
