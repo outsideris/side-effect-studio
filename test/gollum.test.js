@@ -42,4 +42,12 @@ module.exports = {
             status: 404
         });
     },
+    'test request : block create a page': function() {
+        assert.response(server, {
+            url: '/newpage',
+            method: 'GET'
+        }, {
+            status: 404
+        });
+    },
 };
