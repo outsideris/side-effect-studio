@@ -27,7 +27,9 @@ module.exports = {
     'test request : /compare': function() {
         assert.response(server, {
             url: '/compare/node.js',
-            method: 'GET'
+            data: '{"versions": ["673bd020b96b199221a957ed3ba0c52e7db66c6d","3cb1fe3b1a09985e866d175a9e40a0b160367733"]}',
+            method: 'POST',
+            headers: {'Content-Type':'application/json;'}
         }, {
             status: 200
         });
