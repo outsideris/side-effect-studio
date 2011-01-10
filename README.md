@@ -13,4 +13,6 @@ my experimental site for Breakable Toys (one of patters by [Apprenticeship Patte
 - [express](https://github.com/visionmedia/expresso)
 - [node-mongodb-native](https://github.com/christkv/node-mongodb-native)
 - [expresso](https://github.com/visionmedia/expresso) : only for test
+- [jsdom](https://github.com/tmpvar/jsdom)
+- [gollum](https://github.com/github/gollum) : for wiki
 
