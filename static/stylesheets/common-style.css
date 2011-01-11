@@ -211,3 +211,9 @@ a:hover	{ text-decoration: none; }
 #badgeWrapper a {
 	margin-right: 5px;
 }
+
+/* DISQUS */
+#disqus_thread {
+  border-top: 2px solid #E6E6E6;
+  margin-top: 10px;
+}
