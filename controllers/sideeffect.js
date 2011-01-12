@@ -38,7 +38,8 @@ app.get('/', function(req, res) {
         title:'node REPL',
         customStyles: '',
         customScript: '<script src="/javascripts/log.js"></script><script src="/javascripts/command_history.js"></script><script src="/javascripts/app.js"></script>',
-        uid: 'repl-' + url.parse(req.url).pathname
+        uid: 'repl-' + url.parse(req.url).pathname,
+        useDisqus: true
       }
     });      
 });
