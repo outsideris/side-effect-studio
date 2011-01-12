@@ -9,7 +9,7 @@ wiki = module.exports = express.createServer();
 wiki.configure(function() {
     wiki.use(express.methodOverride());
     wiki.use(express.bodyDecoder());
-    wiki.use(express.staticProvider(__dirname.replace('/controllers', '') + '/static'));
+    wiki.use(express.staticProvider(__dirname.replace('/controllers', '') + '/public'));
 });
 
 wiki.configure('development', function() {

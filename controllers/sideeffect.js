@@ -11,7 +11,7 @@ app.configure(function() {
     app.use(express.methodOverride());
     app.use(express.bodyDecoder());
     app.use(app.router);
-    app.use(express.staticProvider(__dirname.replace('/controllers', '') + '/static'));
+    app.use(express.staticProvider(__dirname.replace('/controllers', '') + '/public'));
 });
 
 app.configure('development', function() {
