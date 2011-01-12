@@ -29,7 +29,7 @@ App.addResponseLine = function(msg, ignore_prompt) {
 	}).html(msg).appendTo($('#terminal'));
 	if (!ignore_prompt) {
 		App.addLine();
-		$('input:last').focus();
+		App.focusCursor();
 	}
 };
 
@@ -53,7 +53,7 @@ App.send = function(cmd) {
 
 			if (res.length === 0) {
 				App.addLine();
-				$('input:last').focus();
+				App.focusCursor();
 			}
 		},
 		error: function() {
@@ -85,7 +85,8 @@ $(function() {
 	});
 	
 	$("#terminal").click(function(e) {
-    $('input:last').focus();
+	  console.log("test");
+    App.focusCursor();
   });
   
 });
@@ -98,7 +99,7 @@ $('.readLine').live('keypress', function(e) {
 	var cmd = $('.readLine:last').attr('value').replace('\n', '');
 	if (cmd.length === 0) {
 	  App.addLine();
-	  $('input:last').focus();
+	  App.focusCursor();
 		return;
 	}
 	if (cmd === 'help()') {
@@ -119,8 +120,12 @@ App.addResponseHelpLine = function(msg, ignore_prompt) {
   $('<div class="line"><pre>' + msg + '</pre></div>').appendTo($('#terminal'));
   if (!ignore_prompt) {
     App.addLine();
-    $('input:last').focus();
+    App.focusCursor();
   }
+};
+
+App.focusCursor = function() {
+  $("#terminal").find('input:last').focus();
 };
 
 jQuery.commandLineHistory('.readLine');
