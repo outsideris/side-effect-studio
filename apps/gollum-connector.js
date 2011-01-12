@@ -16,9 +16,10 @@ gollum.getContents = function(pageUrl, res) {
            return;
         }
         
-        var title = ' - ' + window.$('.site').find('h1').first().text();
+        var siteDom = window.$('.site');
+        var title = ' - ' + siteDom.find('h1').first().text();
 
-        var gollumContents = window.$('.site')
+        var gollumContents = siteDom
                                 .find('a[href=/edit'+ pageUrl + ']').remove().end()
                                 .find('a[href=/edit/Home]').remove().end()
                                 .html();
