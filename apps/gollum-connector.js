@@ -1,10 +1,11 @@
 var sys = require('sys'),
+    url = require('url'),
     request = require('request'),
     jsdom = require('jsdom'),
     gollum = module.exports;
 
-gollum.getContents = function(url, res) {
-  request({uri:'http://localhost:4567'+url}, function (error, response, body) {
+gollum.getContents = function(pageUrl, res) {
+  request({uri:'http://localhost:4567'+pageUrl}, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var window = jsdom.jsdom(body).createWindow();
 
@@ -15,7 +16,7 @@ gollum.getContents = function(url, res) {
            return;
         }
         var gollumContents = window.$('.site')
-                                .find('a[href=/edit'+ url + ']').remove().end()
+                                .find('a[href=/edit'+ pageUrl + ']').remove().end()
                                 .find('a[href=/edit/Home]').remove().end()
                                 .html();
         gollumContents = gollumContents.replace(regex, '$1')
@@ -25,7 +26,8 @@ gollum.getContents = function(url, res) {
              title:'wiki',
              customStyles: '<link rel="stylesheet" href="/stylesheets/gollum.css">',
              customScript: '',
-             contents:gollumContents
+             contents:gollumContents,
+             uid: 'wiki' + url.parse(pageUrl).pathname
           }
         });
       });
