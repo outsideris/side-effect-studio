@@ -19,11 +19,12 @@ gollum.getContents = function(pageUrl, res) {
                                 .find('a[href=/edit'+ pageUrl + ']').remove().end()
                                 .find('a[href=/edit/Home]').remove().end()
                                 .html();
+        var title = window.$('.site').find('h1').first().text();
         gollumContents = gollumContents.replace(regex, '$1')
         gollumContents = gollumContents.replace(/&amp;rarr;/g, '&rarr;');
         res.render('gollum.jade', {
           locals: {
-             title:'wiki',
+             title:'wiki - ' + title,
              customStyles: '<link rel="stylesheet" href="/stylesheets/gollum.css">',
              customScript: '',
              contents:gollumContents,
