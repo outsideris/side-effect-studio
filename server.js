@@ -13,7 +13,7 @@ site_vhosts.push(express.vhost('wiki.sideeffect.kr', wiki));
 vhost = express.createServer.apply(this, site_vhosts);
 
 if (!module.parent) {
-    sideeffect.listen(3000);
-    wiki.listen(3001);
-    vhost.listen(80);
+    sideeffect.listen(8003);
+    wiki.listen(8004);
+    vhost.listen(8000);
 }
