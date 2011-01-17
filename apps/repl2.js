@@ -64,7 +64,6 @@ repl2.readLine = function(_cmd, uid, res) {
 	    try {
 		    with(exports.scope[uid]) {
 			    output = [];
-                //sys.puts(buffered_cmd);
 			    output_tmp = eval(buffered_cmd);
 			    output_s = sys.inspect(output_tmp); // otherwise foo = {} will notput {} properly
 			    if (output_tmp) {
