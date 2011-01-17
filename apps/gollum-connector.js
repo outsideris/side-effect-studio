@@ -5,7 +5,7 @@ var sys = require('sys'),
     gollum = module.exports;
 
 gollum.getContents = function(pageUrl, res) {
-  request({uri:'http://localhost:4567'+pageUrl}, function (error, response, body) {
+  request({uri:'http://'+process.env["GOLLUM_HOST"] +':'+ process.env["GOLLUM_PORT"]+pageUrl}, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var window = jsdom.jsdom(body).createWindow();
 
