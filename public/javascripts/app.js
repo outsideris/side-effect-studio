@@ -113,7 +113,7 @@ App.showHelp = function() {
 	App.addResponseHelpLine("    whoami()       show Outsider's profile.", true);
 	App.addResponseHelpLine("    contacts()     show infomation to contact me", true);
 	App.addResponseHelpLine("    projects()     list projects I done,", true);
-	App.addResponseHelpLine("    skills()       list skills I have");
+	App.addResponseHelpLine("    interest()     list skills I interest");
 };
 
 App.addResponseHelpLine = function(msg, ignore_prompt) {

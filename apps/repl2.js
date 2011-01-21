@@ -139,7 +139,7 @@ repl2.userCommand = function(cmd) {
           return true;
        case "projects()":
           return true;
-       case "skills()":
+       case "interest()":
           return true;
     }
     return false;
