@@ -17,3 +17,5 @@ if (!module.parent) {
     wiki.listen(8004);
     vhost.listen(8000);
 }
+
+sys.debug('sideeffect server started');
