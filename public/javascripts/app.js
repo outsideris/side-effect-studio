@@ -85,9 +85,8 @@ $(function() {
 	});
 	
 	$("#terminal").click(function(e) {
-	  console.log("test");
-    App.focusCursor();
-  });
+        App.focusCursor();
+    });
   
 });
 

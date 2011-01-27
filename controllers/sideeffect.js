@@ -8,6 +8,7 @@ app = module.exports = express.createServer();
 
 // Environment configration
 app.configure(function() {
+    app.set('views', __dirname.replace('/controllers', '') + '/views');
     app.use(express.methodOverride());
     app.use(express.bodyDecoder());
     app.use(app.router);
@@ -21,15 +22,13 @@ app.configure('development', function() {
     }));      
 });
 
-app.configure('pruduction', function() {
+app.configure('production', function() {
     app.use(express.errorHandler());      
 });
 
 app.configure('test', function() {
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
-
-app.set('views', __dirname.replace('/controllers', '') + '/views');
 
 // REPL App Controller
 app.get('/', function(req, res) {
