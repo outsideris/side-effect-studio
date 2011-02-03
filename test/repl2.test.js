@@ -25,8 +25,8 @@ module.exports = {
     'test userCommand : projects()': function() {
         assert.equal(true, repl2.userCommand('projects()'));
     },
-    'test userCommand : skills()': function() {
-        assert.equal(true, repl2.userCommand('skills()'));
+    'test userCommand : interest()': function() {
+        assert.equal(true, repl2.userCommand('interest()'));
     },
     'test userCommand : somethings()': function() {
         assert.equal(false, repl2.userCommand('shomthins()'));
