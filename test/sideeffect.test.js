@@ -92,7 +92,7 @@ module.exports = {
             method: 'GET'
         }, {
             status: 200,
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
         });
     },
     'test request for /cmd : command whoami()': function() {
@@ -102,7 +102,7 @@ module.exports = {
         }, {
             status: 200,
             body: '{"response":["Nickname: Outsider","Front-end & Server-side Web Developer"]}',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
         });
     },
     'test request for /cmd : numeric': function() {
@@ -112,7 +112,7 @@ module.exports = {
         }, {
             status: 200,
             body: '{"response":["1"]}',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
         });
     },
     'test request for /cmd : undefined error': function() {
@@ -122,7 +122,7 @@ module.exports = {
         }, {
             status: 200,
             body: '{"response":["Error: ReferenceError: a is not defined"]}',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
         });
     },
     'test request for /cmd : simple JavaScript Command': function() {
@@ -132,7 +132,7 @@ module.exports = {
         }, {
             status: 200,
             body: '{"response":["1"]}',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
         });
     },
     'test request for /cmd : define variable command': function() {
@@ -142,7 +142,7 @@ module.exports = {
         }, {
             status: 200,
             body: '{"response":["\'2\'"]}',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
         });
     },
     'test request for /cmd : define function of variable type command': function() {
@@ -152,7 +152,7 @@ module.exports = {
         }, {
             status: 200,
             body: '{"response":["[Function]"]}',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
         });
     },
     'test request for /cmd : define function command': function() {
@@ -162,7 +162,7 @@ module.exports = {
         }, {
             status: 200,
             body: '{"response":["[Function: c]"]}',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
         });
     },
 };

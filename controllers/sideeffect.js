@@ -10,9 +10,9 @@ app = module.exports = express.createServer();
 app.configure(function() {
     app.set('views', __dirname.replace('/controllers', '') + '/views');
     app.use(express.methodOverride());
-    app.use(express.bodyDecoder());
+    app.use(express.bodyParser());
     app.use(app.router);
-    app.use(express.staticProvider(__dirname.replace('/controllers', '') + '/public'));
+    app.use(express.static(__dirname.replace('/controllers', '') + '/public'));
 });
 
 app.configure('development', function() {

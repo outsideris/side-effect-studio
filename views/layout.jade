@@ -1,78 +1,75 @@
 !!! 5
 html(lang="ko")
-	head
-		title Side Effect Studio - 
-		  != title
-		link(rel='stylesheet', href='/stylesheets/common-style.css')
-		link(rel='stylesheet', href='/stylesheets/REPL-style.css')
-		!= customStyles
-	body
-		.mainWrapper
-			.header
-				h1 SIDE EFFECT
-					span studio
-				h2 : 
-				  != title
-				ul.nav
-					li
-						a(href: 'http://www.sideeffect.kr') Home
-					li
-						a(href: 'http://blog.outsider.ne.kr', target: '_blank') Blog
-					li
-						a(href: 'http://wiki.sideeffect.kr') Wiki
+  head
+    title Side Effect Studio - #{title}
+    link(rel='stylesheet', href='/stylesheets/common-style.css')
+    link(rel='stylesheet', href='/stylesheets/REPL-style.css')
+    != customStyles
+  body
+    .mainWrapper
+      .header
+        h1 SIDE EFFECT
+          span studio
+        h2 : #{title}
+        ul.nav
+          li
+            a(href='http://www.sideeffect.kr') Home
+          li
+            a(href='http://blog.outsider.ne.kr', target='_blank') Blog
+          li
+            a(href='http://wiki.sideeffect.kr') Wiki
 
-			#container
-				#wrapper!= body
-				  
-				  - if (useDisqus)
-    				// DISQUS
-    				div(id='disqus_thread')
-    				:javascript
-              | var disqus_shortname = 'sideeffectstudio';
-              | var disqus_identifier = '#{uid}';
-              | //var disqus_developer = 1;
-              |        
-              | (function() {
-              |     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              |     dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-              |     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-              | })();
+      #container
+        #wrapper!= body
+          - if (useDisqus)
+            // DISQUS
+            div(id='disqus_thread')
+            script
+              var disqus_shortname = 'sideeffectstudio';
+              var disqus_identifier = '#{uid}';
+              //var disqus_developer = 1;
+              
+              (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
             noscript Please enable JavaScript to view the
               a(href='http://disqus.com/?ref_noscript') comments powered by Disqus.
             a(href='http://disqus.com', class='dsq-brlink')
               |comments powered by 
               span(class='logo-disqus') Disqus
-				
-		#badgeWrapper
-			a(href: 'http://nodejs.org/', target: '_blank', class: 'badge')
-				img(src: '/images/nodejs-badge.png', alt: 'Powered by node.js')
-			a(href: 'http://www.mongodb.org/', target: '_blank', class: 'badge')
-				img(src: '/images/PoweredMongoDBbrown.png', alt: 'Powered by MongoDB')
-					
-		.footer
-			div
-				a(href: 'http://frends.kr', target: '_blank')
-					img(src: '/images/frends_banner.gif', alt: 'FRENDS')
-				a(href: 'http://www.springsprout.org', target: '_blank')
-					img(src: '/images/springsprout_banner.png', alt: '봄싹')
-				div
-					|Copyright 2011 &copy;
-					a(href: 'http://blog.outsider.ne.kr', target: '_blank') Outsider
-					|, All rights reserved.
-		
-		script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js')
-		script(src='/javascripts/common.js')
-		script(src='/javascripts/cufon-yui.js')
-		script(src='/javascripts/Orbitron_900-Orbitron_700.font.js')
-		!= customScript
-		// google analytics
-		:javascript
-		  |var _gaq = _gaq || [];
-      |_gaq.push(['_setAccount', 'UA-1316180-4']);
-      |_gaq.push(['_setDomainName', '.sideeffect.kr']);
-      |_gaq.push(['_trackPageview']);
-      |(function() {
-      |  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      |  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      |  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      |})();
+
+    #badgeWrapper
+      a(href='http://nodejs.org/', target='_blank', class='badge')
+        img(src='/images/nodejs-badge.png', alt='Powered by node.js')
+      a(href='http://www.mongodb.org/', target='_blank', class='badge')
+        img(src='/images/PoweredMongoDBbrown.png', alt='Powered by MongoDB')
+
+    .footer
+      div
+        a(href='http://frends.kr', target='_blank')
+          img(src='/images/frends_banner.gif', alt='FRENDS')
+        a(href='http://www.springsprout.org', target='_blank')
+          img(src='/images/springsprout_banner.png', alt='봄싹')
+        div
+          |Copyright 2011 &copy;
+          a(href='http://blog.outsider.ne.kr', target='_blank') Outsider
+          |, All rights reserved.
+
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js')
+    script(src='/javascripts/common.js')
+    script(src='/javascripts/cufon-yui.js')
+    script(src='/javascripts/Orbitron_900-Orbitron_700.font.js')
+    != customScript
+    // google analytics
+    script
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1316180-4']);
+      _gaq.push(['_setDomainName', '.sideeffect.kr']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
