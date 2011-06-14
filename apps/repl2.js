@@ -33,6 +33,7 @@ repl2.readLine = function(_cmd, uid, res) {
     var isUserCommand = repl2.userCommand(cmd, uid)
     if (isUserCommand) {
         var output = [];
+        cmd = repl2.stripSemicolon(cmd);
         cmd = repl2.stripBrace(cmd); 
 
         var db = new Db('sideeffect_main', new Server(process.env["MONGODB_HOST"], process.env["MONGODB_PORT"], {}));
@@ -100,6 +101,13 @@ repl2.trimWhitespace = function(cmd) {
  	}
 };
 
+repl2.stripSemicolon = function(cmd) {
+  if (cmd.charAt(cmd.length-1) === ';') {
+    cmd = cmd.substring(0, cmd.length-1);
+  }
+  return cmd;
+}
+
 repl2.convertToScope = function(cmd, uid) {
 	var matches;
 
@@ -132,6 +140,7 @@ repl2.parseREPLKeyword = function(cmd, uid) {
 }
 
 repl2.userCommand = function(cmd) {
+   cmd = repl2.stripSemicolon(cmd);
     switch (cmd) {
        case "whoami()":
           return true;

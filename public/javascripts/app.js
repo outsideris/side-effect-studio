@@ -101,7 +101,7 @@ $('.readLine').live('keypress', function(e) {
 	  App.focusCursor();
 		return;
 	}
-	if (cmd === 'help()') {
+	if (cmd === 'help()' || cmd === 'help();' ) {
 		App.showHelp();
 	} else {
 		App.send(cmd);
