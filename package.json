@@ -1,0 +1,21 @@
+{
+  "name": "Side Effect Studio"
+, "description": "Side Effect Sudio"
+, "version": "0.0.3"
+, "author" : "Outsider <outsideris@gmail.com> (http://sideeffect.kr) (http://blog.outsider.ne.kr)"
+, "repository": {
+    "type": "git"
+  , "url": "git://github.com/outsideris/try-nodejs.git"
+  }
+, "private": true
+, "dependencies": {
+    "express": "2.3.11"
+  , "jade": ">= 0.0.1"
+  , "stylus": ">= 0.0.1"
+  , "mongodb": "0.7.9"
+  , "jsdom": "0.2.0"
+  }
+, "scripts": {
+  , "start": "node sideeffect.js"
+  }
+}
