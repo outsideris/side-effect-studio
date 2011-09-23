@@ -4,6 +4,7 @@ var sys = require('sys'),
     wiki = require('./controllers/gollum'),
     labs = require('./controllers/labs'),
     thinkup = require('./controllers/thinkup'),
+    cron = require('./apps/cron'),
     site_vhosts = [],
     vhost;
 
