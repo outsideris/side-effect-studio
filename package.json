@@ -1,0 +1,23 @@
+{
+  "author": "Outsider <outsideris@gmail.com> (http://blog.outsider.ne.kr)",
+  "name": "sideeffect",
+  "description": "side effect studio",
+  "version": "0.0.2",
+  "homepage": "http://sideeffect.kr",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/outsideris/try-nodejs.git"
+  },
+  "engines": {
+    "node": "~v0.4.11"
+  },
+  "dependencies": {
+    "express": "2.3.11",
+    "http-proxy": "0.7.0",
+    "jade": "0.12.1",
+    "jsdom": "0.2.0",
+    "mongodb": "0.7.9",
+    "cron": "~0.1.3"
+  },
+  "devDependencies": {}
+}

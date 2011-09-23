@@ -1,3 +1,4 @@
 .settings.xml
 labs/
 node_modules/
+*.swp
