@@ -1,15 +1,25 @@
-var util = require('util'),
-fs = require('fs'),
-qs = require('querystring'),
-url = require('url'),
-mongodb = require('mongodb'),
-buffered_cmd = '',
-repl2 = exports,
-Db = mongodb.Db,
-Server = mongodb.Server,
-scopedVar = /^\s*var\s*([_\w\$]+)(.*)$/m,
-scopeFunc = /^\s*function\s*([_\w\$]+)/,
-putsm = [];
+var util = require('util')
+  , fs = require('fs')
+  , qs = require('querystring')
+  , url = require('url')
+  , Mongolian = require('mongolian')
+  , buffered_cmd = ''
+  , repl2 = exports
+  , scopedVar = /^\s*var\s*([_\w\$]+)(.*)$/m
+  , scopeFunc = /^\s*function\s*([_\w\$]+)/
+  , putsm = [];
+
+var db = new Mongolian(process.env["MONGODB_HOST"] + ':' + process.env["MONGODB_PORT"], {
+        log: {
+            debug: function(message){ }
+          , info:  function(message){ }
+          , warn:  function(message){ console.log(message) }
+          , error: function(message){ console.log(message) }
+        }
+      }).db('sideeffect_main');
+db.auth(process.env["MONGODB_USER"], process.env["MONGODB_PASS"]);
+
+var trynode = db.collection('trynode');
 
 exports.scope = {};
 
@@ -36,26 +46,12 @@ repl2.readLine = function(_cmd, uid, res) {
         cmd = repl2.stripSemicolon(cmd);
         cmd = repl2.stripBrace(cmd); 
 
-        var db = new Db('sideeffect_main', new Server(process.env["MONGODB_HOST"], process.env["MONGODB_PORT"], {}));
-        db.open(function(err, db) {
-    			db.authenticate(process.env["MONGODB_USER"], process.env["MONGODB_PASS"], function() {
-    	            if (err) { util.debug("DB Authentication error!"); }
-    				
-    	            db.collection("trynode", function(err, collection) {
-    	               collection.find({"cmd":cmd}, {"sort":"order"}, function(err, cursor) {
-    	                  cursor.each(function(err, item) {
-    	                     if (item != null) {
-    	                         output.push(item.contents); 
-    	                     } else {
-    	                         res.send({
-    	                            response: output   
-    	                         });
-    	                     }
-    	                  });
-    	                  db.close();
-    	              });   
-    	           }); 
-    		   });       
+        trynode.find({cmd:cmd}).sort({order:1}).forEach(function(item) {
+            output.push(item.contents);
+        }, function(err) {
+            res.send({
+              response: output   
+            });
         });
     } else {
 
