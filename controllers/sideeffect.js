@@ -1,4 +1,4 @@
-var sys = require('sys'),
+var util = require('util'),
 url = require('url'),
 child_process = require('child_process'),
 qs = require('querystring'),

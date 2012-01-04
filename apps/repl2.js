@@ -1,4 +1,4 @@
-var sys = require('sys'),
+var util = require('util'),
 fs = require('fs'),
 qs = require('querystring'),
 url = require('url'),
@@ -39,7 +39,7 @@ repl2.readLine = function(_cmd, uid, res) {
         var db = new Db('sideeffect_main', new Server(process.env["MONGODB_HOST"], process.env["MONGODB_PORT"], {}));
         db.open(function(err, db) {
     			db.authenticate(process.env["MONGODB_USER"], process.env["MONGODB_PASS"], function() {
-    	            if (err) { sys.debug("DB Authentication error!"); }
+    	            if (err) { util.debug("DB Authentication error!"); }
     				
     	            db.collection("trynode", function(err, collection) {
     	               collection.find({"cmd":cmd}, {"sort":"order"}, function(err, cursor) {
@@ -66,7 +66,7 @@ repl2.readLine = function(_cmd, uid, res) {
 		    with(exports.scope[uid]) {
 			    output = [];
 			    output_tmp = eval(buffered_cmd);
-			    output_s = sys.inspect(output_tmp); // otherwise foo = {} will notput {} properly
+			    output_s = util.inspect(output_tmp); // otherwise foo = {} will notput {} properly
 			    if (output_tmp) {
 				    output.push(output_s);
 			    }
@@ -158,15 +158,15 @@ repl2.stripBrace = function(cmd) {
    return cmd.replace(/\(\)$/, "");
 }
 
-sys.puts = function(msg) {
+util.puts = function(msg) {
   putsm.push(msg);
 }
 
-sys.p = function(msg) {
+util.p = function(msg) {
   putsm.push(msg);
 }
 
-sys.print = function(msg) {
+util.print = function(msg) {
   putsm.push(msg);
 }
 

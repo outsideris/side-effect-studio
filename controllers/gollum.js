@@ -1,4 +1,4 @@
-var sys = require('sys'),
+var util = require('util'),
 url = require('url'),
 qs = require('querystring'),
 express = require('express'),

@@ -1,4 +1,4 @@
-var sys = require('sys'),
+var util = require('util'),
     express = require('express'),
     sideeffect = require('./controllers/sideeffect'),
     wiki = require('./controllers/gollum'),
@@ -25,4 +25,4 @@ if (!module.parent) {
     vhost.listen(8000);
 }
 
-sys.debug('sideeffect server started');
+util.debug('sideeffect server started');

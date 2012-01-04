@@ -1,4 +1,4 @@
-var sys = require('sys'),
+var util = require('util'),
 express = require('express'),
 app = module.exports = express.createServer();
 
