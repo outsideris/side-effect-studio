@@ -216,4 +216,5 @@ a:hover	{ text-decoration: none; }
 #disqus_thread {
   border-top: 2px solid #E6E6E6;
   margin-top: 10px;
+  font-size: 0.6em !important; 
 }
