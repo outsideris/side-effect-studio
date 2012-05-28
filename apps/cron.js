@@ -11,7 +11,7 @@ function log(err, stdout, stderr) {
 
 // Gollum auto push
 new cron.CronJob('0 0 * * *', function() {
-  process.chdir('/home/rockdoli/www/gollum-wiki/');
+  process.chdir('/home/outsider/apps/ruby/gollum/');
   exec('.git/hooks/post-commit', log);
   console.log('Gollum wikin pushed at : ' + new Date);      
 });
