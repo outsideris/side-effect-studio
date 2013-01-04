@@ -5,13 +5,13 @@ function log(err, stdout, stderr) {
   console.log('stdout: ' + stdout);
   console.log('stderr: ' + stderr);
   if (err !== null) {
-     console.log('error: ' + error);
+     console.log('error: ' + err);
   }
 }
 
 // Gollum auto push
-new cron.CronJob('0 0 * * *', function() {
+new cron.CronJob('40 1 * * *', function() {
   process.chdir('/home/outsider/apps/ruby/gollum/');
-  exec('.git/hooks/post-commit', log);
+  exec('git push origin master', log);
   console.log('Gollum wikin pushed at : ' + new Date);      
 });
