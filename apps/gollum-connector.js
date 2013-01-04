@@ -4,24 +4,35 @@ var util = require('util'),
     gollum = module.exports;
 
 gollum.getContents = function(pageUrl, res) {
-  jsdom.env('http://'+process.env["GOLLUM_HOST"] +':'+ process.env["GOLLUM_PORT"]+pageUrl, function (error, window) {
-    jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.7.2.min.js', function () {
-      if (window.$('#gollum-editor-submit').val() === 'Save') {
+  jsdom.env('http://'+process.env["GOLLUM_HOST"] +':'+ process.env["GOLLUM_PORT"]+pageUrl,
+    function (error, window) {
+      var submitElem = window.document.getElementById('gollum-editor-submit');
+      if (submitElem && submitElem.value === 'Save') {
          res.send('', 404);
          return;
       }
         
-      var siteDom = window.$('body');
-      var head = window.$('#head');
-      var title = ' - ' + head.find('h1').first().text();
-
-      var gollumContents = siteDom
-                              .find('#minibutton-new-page').remove().end()
-                              .find('.action-edit-page').remove().end()
-                              .find('#search-query').val('').end()
-                              .find('.gollum-revert-button').remove().end()
-                              .html();
+      var title = ' - ' + window.document.getElementById('head').getElementsByTagName('h1')[0].innerHTML;
       
+      var newBtn = window.document.getElementById('minibutton-new-page');
+      if (newBtn) {
+        newBtn.parentNode.removeChild(newBtn);
+      }
+      var editBtns = window.document.getElementsByClassName('action-edit-page');
+      for (var i = 0; editBtns.length > 0; ) {
+        editBtns.item(i).parentNode.removeChild(editBtns.item(i));
+      }
+      var search = window.document.getElementById('search-query');
+      if (search) {
+        search.parentNode.removeChild(search);
+      }
+      var revertBtns = window.document.getElementsByClassName('gollum-revert-button');
+      for (var i = 0; revertBtns.length > 0; ) {
+        revertBtns.item(i).parentNode.removeChild(revertBtns.item(i));
+      }
+
+      var gollumContents = window.document.getElementsByTagName('body').item(0).innerHTML;
+ 
       var pathName = url.parse(pageUrl).pathname;
       var useDisqus = true;
       var regexHistory = /\/history\//i;
@@ -41,6 +52,5 @@ gollum.getContents = function(pageUrl, res) {
            useDisqus: useDisqus
         }
       });
-    });
   });
 };
