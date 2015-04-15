@@ -1,9 +1,9 @@
 Side Effect Studio
 ====================
 
-my experimental site for Breakable Toys (one of patters by [Apprenticeship Patterns](http://apprenticeship-patterns.labs.oreilly.com/))
+Side Effect Studio is a website for my own Breakable Toys
+(one of patters by [Apprenticeship Patterns](http://apprenticeship-patterns.labs.oreilly.com/)).
 
-### Description
-- I'm inspired from [try mongodb](http://try.mongodb.org/)
-- I forked [try-nodejs](https://github.com/neerajdotname/try-nodejs) and customized for my private purpose.
+This repository manages Side Effect Studio websites to serve information
+about projects I am involved.
 
