@@ -1,4 +1,4 @@
-!!! 5
+doctype html
 html(lang="ko")
   head
     title Side Effect Studio - #{title}
@@ -24,7 +24,7 @@ html(lang="ko")
           - if (useDisqus)
             // DISQUS
             div(id='disqus_thread')
-            script
+            script.
               var disqus_shortname = 'sideeffectstudio';
               var disqus_identifier = '#{uid}';
               //var disqus_developer = 1;
@@ -62,7 +62,7 @@ html(lang="ko")
     script(src='/javascripts/Orbitron_900-Orbitron_700.font.js')
     != customScript
     // google analytics
-    script
+    script.
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1316180-4']);
       _gaq.push(['_setDomainName', '.sideeffect.kr']);
