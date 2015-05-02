@@ -10,6 +10,9 @@ RUN npm install -g bower
 
 RUN cd /src; npm install; bower install --allow-root
 
+ENV MONGODB_HOST hostip
+ENV MONGODB_PORT 23002
+
 EXPOSE  8020
 
 CMD ["coffee", "/src/server.coffee"]
