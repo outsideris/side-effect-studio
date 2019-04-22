@@ -7,3 +7,4 @@ Side Effect Studio is a website for my own Breakable Toys
 This repository manages Side Effect Studio websites to serve information
 about projects I am involved.
 
+* [apps](apps/)
